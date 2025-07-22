@@ -1,0 +1,34 @@
+
+//  ----------------------------------------------------
+//  headerの表示タイミング設定
+//  ----------------------------------------------------
+let pagetop = $("header");
+pagetop.hide();                        // 最初に画面が表示された時は、ボタンを非表示に設定
+// スクロールイベント
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 750) {   //スクロール位置が750pxを超えた場合
+        pagetop.fadeIn();              //ボタンを表示する
+    } else {                           //スクロール位置が750px未満の場合
+        pagetop.fadeOut();             //トップに戻るボタンを非表示にする
+    }
+});
+
+
+window.addEventListener('scroll', function () {
+    const header = document.getElementById('header');
+    const footer = document.getElementById('footer');
+
+    if (!header || !footer) return;
+
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (footerTop < windowHeight) {
+        const footerHeight = footer.offsetHeight;
+        header.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+        header.style.transform = `translateY(-${footerHeight}px)`;
+    } else {
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        header.style.transform = 'translateY(0)'
+    }
+});
