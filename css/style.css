@@ -68,21 +68,14 @@ li {
 /* 共通 header -----------------------------------*/
 
 header {
-    /* position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 30px;
-    max-width: 1200px;
-    height: 88px;
-    margin: 0 auto; */
     position: fixed;
     z-index: 20;
     left: 0;
     right: 0;
     bottom: 0px;
-    height: 100px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
+    height: 80px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -94,34 +87,29 @@ header nav ul{
 }
 
 header nav ul li {
-    /* border: 1px solid #000;
-    padding: 15px 75px;
-    background-color: #99FF99;
-    box-shadow: 3px 3px 3px 1px #CC9966;
-    transition: 0.3s ease; */
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    border: 1px solid #000;
-    width: 23%;
-    height: 60px;
+    width: 19%;
+    height: 50px;
     text-align: center;
-    line-height: 60px;
-    background-color: #99FF99;
-    box-shadow: 3px 3px 3px 1px #CC9966;
+    background-color: #EAFFF4;
+    box-shadow: 3px 3px 3px 1px #454545b7;
     transition: 0.3s ease;
 }
 
-header nav ul li:hover {
-    background-color: #EAFFF4;
+header nav ul li a {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 50px;
+    letter-spacing: 0.15em;
 }
+
+header nav ul li a:hover {
+    background-color: #99FF99;
+}
+
 
 /* 共通 footer -----------------------------------*/
 footer {
-    /* position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0; */
     background-color: rgba(0, 0, 0, 0.3);
     height: 30px;
 }
