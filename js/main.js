@@ -13,11 +13,14 @@ $(window).scroll(function () {
     }
 });
 
-
+//  ----------------------------------------------------
+//  headerからfooterの切り替え
+//  ----------------------------------------------------
 window.addEventListener('scroll', function () {
     const header = document.getElementById('header');
     const footer = document.getElementById('footer');
 
+    //いずれかの要素が存在しない場合は処理を中断
     if (!header || !footer) return;
 
     const footerTop = footer.getBoundingClientRect().top;
@@ -28,7 +31,7 @@ window.addEventListener('scroll', function () {
         header.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
         header.style.transform = `translateY(-${footerHeight}px)`;
     } else {
-        header.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        header.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
         header.style.transform = 'translateY(0)'
     }
 });
