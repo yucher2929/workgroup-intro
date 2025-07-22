@@ -35,3 +35,17 @@ window.addEventListener('scroll', function () {
         header.style.transform = 'translateY(0)'
     }
 });
+
+
+//  ----------------------------------------------------
+//  FAQのQ.をクリックしたら、A.を表示する
+//  ----------------------------------------------------
+$(document).ready(function() {
+  // すべての質問の要素（.faq_item--q）がクリックされたときの処理
+  $('.faq_item--q').on('click', function() {
+    $(this).next('.faq_item--a').slideToggle();
+
+    // クリックされた質問に 'active' クラスを付け外しして、CSSでアイコンなどを変更できるようにする
+    $(this).toggleClass('active');
+  });
+});

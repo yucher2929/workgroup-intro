@@ -311,3 +311,32 @@ faq.html
     display: inline-block;
     padding-right: 20px;
 }
+
+/* 質問のテキスト */
+.faq_item--q {
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px;
+}
+
+/* 回答のテキスト */
+.faq_item--a {
+    display: none;
+    padding-left: 20px;
+    border-left: 2px solid #eee;
+    margin-top: 10px;
+
+}
+
+.faq_item--q::after {
+    content: '+';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.faq_item--q.active::after {
+    content: '-';
+}
