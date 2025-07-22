@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* 共通 -----------------------------------------*/
-body{
+body {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -79,7 +79,7 @@ header {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-header nav ul{
+header nav ul {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -201,7 +201,9 @@ index.html
     margin-bottom: 150px;
 }
 
-.about__what__text, .about__merit__text, .about__voice__text {
+.about__what__text,
+.about__merit__text,
+.about__voice__text {
     line-height: 50px;
 }
 
@@ -227,7 +229,8 @@ index.html
     padding-bottom: 50px;
 }
 
-.about__voice__left, .about__voice__right {
+.about__voice__left,
+.about__voice__right {
     display: flex;
     align-items: center;
 }
@@ -249,32 +252,32 @@ index.html
 }
 
 .about__voice__left--text::before {
-  position: absolute;
-  content: "";
-  width: 30px;
-  height: 30px;
-  border-top: 15px solid transparent;
-  border-right: 15px solid #ffffff;
-  border-bottom: 15px solid transparent;
-  top: 30%;
-  left: -30px;
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-top: 15px solid transparent;
+    border-right: 15px solid #ffffff;
+    border-bottom: 15px solid transparent;
+    top: 30%;
+    left: -30px;
 }
 
 .about__voice__right--text {
-  margin-right: 25px;
-  position: relative;
+    margin-right: 25px;
+    position: relative;
 }
 
 .about__voice__right--text::after {
-  position: absolute;
-  content: "";
-  width: 30px;
-  height: 30px;
-  border-top: 15px solid transparent;
-  border-left: 15px solid #ffffff;
-  border-bottom: 15px solid transparent;
-  top: 30%;
-  right: -30px;
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-top: 15px solid transparent;
+    border-left: 15px solid #ffffff;
+    border-bottom: 15px solid transparent;
+    top: 30%;
+    right: -30px;
 }
 
 
@@ -288,11 +291,23 @@ event.html
 
 
 
+
 /* =================================
 faq.html
 ===================================== */
 /* 仮設定 */
-/* =================================
-faq.html
-===================================== */
-/* 仮設定 */
+#faq .section-title {
+    margin-bottom: 100px;
+}
+
+.faq_item--text {
+    border-block: 1px solid #9E9E9E;
+    padding: 60px 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.faq_item--text span {
+    display: inline-block;
+    padding-right: 20px;
+}
