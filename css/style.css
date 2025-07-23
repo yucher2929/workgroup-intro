@@ -299,7 +299,7 @@ faq.html
 /* #faq */
 #faq .section-title,
 #entry .section-title {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .faq_item--text {
@@ -349,6 +349,10 @@ faq.html
     content: '-';
 }
 
+.faq_item--a img {
+    width: 70%;
+}
+
 /* #entry */
 #entry {
     padding-bottom: 50px;
@@ -357,7 +361,7 @@ faq.html
 .entry_link {
     display: block;
     text-align: center;
-    margin-block: 20px;
+    margin-block: 50px;
 }
 
 .entry_link a {
@@ -367,4 +371,8 @@ faq.html
     font-weight: bold;
     display: inline-block;
     text-decoration: none;
+}
+
+.entry_link a:hover {
+    background-color: #99FF99;
 }
