@@ -296,7 +296,9 @@ event.html
 faq.html
 ===================================== */
 /* 仮設定 */
-#faq .section-title {
+/* #faq */
+#faq .section-title,
+#entry .section-title {
     margin-bottom: 100px;
 }
 
@@ -317,6 +319,12 @@ faq.html
     cursor: pointer;
     position: relative;
     padding-right: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease
+}
+
+.faq_item--q:hover {
+    background-color: #99FF99;
+    transition: transform 0.3s ease, background-color 0.3s ease
 }
 
 /* 回答のテキスト */
@@ -324,8 +332,8 @@ faq.html
     display: none;
     padding-left: 20px;
     border-left: 2px solid #eee;
-    margin-top: 10px;
-
+    margin-bottom: 10px;
+    background-color: #fef4f4;
 }
 
 .faq_item--q::after {
@@ -339,4 +347,24 @@ faq.html
 
 .faq_item--q.active::after {
     content: '-';
+}
+
+/* #entry */
+#entry {
+    padding-bottom: 50px;
+}
+
+.entry_link {
+    display: block;
+    text-align: center;
+    margin-block: 20px;
+}
+
+.entry_link a {
+    background-color: #EAFFF4;
+    border-radius: 5px;
+    padding: 10px 30px;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
 }
