@@ -25,32 +25,111 @@
 </head>
 
 <body>
-    <header>
+
+    <header id="header">
         <nav>
-            <ul>
-                <a href="index.html"><li>TOP</li></a>
-                <a href="index.html#about"><li>ABOUT</li></a>
-                <a href="event.html"><li>EVENT</li></a>
-                <a href="faq.html"><li>FAQ</li></a>
+            <ul class="michroma-regular">
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="index.html#about">ABOUT</a></li>
+                <li><a href="event.html">EVENT</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="faq.html">ENTRY</a></li>
             </ul>
         </nav>
     </header>
 
 
-    <main id="event" class="container">
-        <h2>EVENT</h2>
 
-        <article id="seminar">
-            <h3>01  セミナー</h3>
-            <div class="seminar__flex">
-                <!-- <div class="seminar_flex-img">
-                    <img src="img/seminar_01.png" alt="">
-                    <img src="img/seminar_02.png" alt="">
-                    <img src="img/seminar_03.png" alt="">
+    <main id="event" class="container wrapper">
+        <h2 class="section-title">EVENT</h2>
 
-                </div> -->
-                <div class="seminar__flex-text">
+        <article id="work-session-regular" class="event__section">
+            <!-- 曲線をスクロールで出現させる -->
+            <div class="event__title--underline">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="line"></div>
+            </div>
 
+            <h3 class="event__sub-title">
+                <span>01</span>作業会定例
+            </h3>
+            
+            <div class="work-session-regular__items event__items">
+                <div class="work-session-regular__seminar work-session-regular__item">
+                    <img class="work-session-regular__img" src="img/seminar_01.png" alt="">
+                    <h4 class="seminar__label section__label">特別セミナー</h4>
+                    <ul>
+                        <li>講師セミナー</li>
+                        <li>案件獲得セミナー</li>
+                        <li>現役エンジニアセミナー</li>
+                    </ul>
+                </div>
+    
+                <div class="work-session-regular__ask-space work-session-regular__item">
+                    <h4 class="ask-space__label section__label">質問部屋</h4>
+                    <ul>
+                        <li>案件獲得のための部屋</li>
+                        <li>セミナー講師部屋</li>
+                        <li>レベル別質問部屋</li>
+                    </ul>
+                    <div class="work-session-regular__imgs">
+                        <img class="work-session-regular__img work-session-regular__img--left" src="img/ask-space_01.png" alt="">
+                        <img class="work-session-regular__img work-session-regular__img--center" src="img/ask-space_02.png" alt="">
+                        <img class="work-session-regular__img work-session-regular__img--right" src="img/ask-space_03.png" alt="">
+                    </div>
+                </div>
+    
+                <div class="work-session-regular__beginner-meetup work-session-regular__item">
+                    <h4 class="beginner-meetup__label section__label">初心者交流会</h4>
+                    <ul>
+                        <li>作業会の使い方</li>
+                        <li>勉強の仕方</li>
+                        <li>モチベーションの向上</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <article id="virtual-drink-meetup" class="event__section">
+            <div class="event__title--underline">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="line"></div>
+            </div>
+
+            <h3 class="event__sub-title">
+                <span>02</span>Online飲み会
+            </h3>
+            <div class="virtual-drink-meetup__items event__items">
+                <div class="virtual-drink-meetup__description">
+                    <p>月に1回の開催で、グループに分かれて自己紹介や協力型のゲームを通じて交流を深めます。
+    初参加の方も安心して参加できる工夫が満載です。</p>
+                </div>
+                <div class="virtual-drink-meetup__img">
+
+                </div>
+            </div>
+
+        </article>
+
+        <article id="hackathon" class="event__section">
+            <div class="event__title--underline">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="line"></div>
+            </div>
+
+            <h3 class="event__sub-title">
+                <span>03</span>ハッカソン
+            </h3>
+            <div class="hackathon__items event__items">
+                <div class="hackathon__img">
+    
+                </div>
+                <div class="hackathon__description">
+                    <p>3人1チームで提示された課題に取り組み、ホームページ制作を競い合います。
+    チームで一つのものを作り上げる経験や、仲間のコーディングを間近で見られる機会は、独学では得られない貴重な体験です。</p>
                 </div>
             </div>
         </article>
@@ -59,8 +138,8 @@
 
 
 
-    <footer>
-        <p class="footer__copy">&copy;metaleaf by penguin</p>
+    <footer id="footer" class="michroma-regular">
+        <p class="footer__copy">&copy; metaleaf by penguin</p>
     </footer>
 
 

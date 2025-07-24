@@ -99,7 +99,7 @@ header {
     height: 80px;
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: height 0.3s ease;
 }
 
 header nav ul{
@@ -133,8 +133,11 @@ header nav ul li a:hover {
 
 /* 共通 footer -----------------------------------*/
 footer {
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 30px;
+    position: relative;
+    z-index: 25;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 1.7s ease;
 }
 
 .footer__copy {
@@ -283,8 +286,8 @@ index.html
 }
 
 .about__voice__right--text {
-  margin-right: 25px;
-  position: relative;
+    margin-right: 25px;
+    position: relative;
 }
 
 .about__voice__right--text::after {
@@ -323,14 +326,122 @@ index.html
 /* =================================
 event.html
 ===================================== */
-/* 仮設定 */
+.event__section {
+    position: relative;
+    margin-bottom: 100px;
+}
+
+/* title underline animation ---------*/
+.event__title--underline {
+    position: absolute;
+    padding-top: 20px;
+}
+
+.circle {
+    position: relative;
+    width: 500px;
+    height: 200px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.circle1 {
+    position: relative;
+    left: -60px;
+    z-index: -20;
+    background-color: #333;
+}
+
+.circle2 {
+    position: relative;
+    top: -205px;
+    left: -60px;
+    width: 510px;
+    z-index: -15;
+    background-color: #D9D9D9;
+}
+
+/* ----------------------------------- */
+
+
+.event__sub-title {
+    font-size: 60px;
+    margin-bottom: 50px;
+}    
+
+.event__sub-title span {
+    font-size: 80px;
+    letter-spacing: 0.1em;
+    padding-right: 50px;
+}    
+
+.event__items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section__label {
+    font-size: 35px;
+    padding-bottom: 30px;
+}
+
+
+.work-session-regular__item {
+    width: 32%;
+}
+
+.work-session-regular__item ul li {
+    display: block;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.work-session-regular__item ul li::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 100%;
+    height: 1px;
+    background-color: #9E9E9E;
+}
+
+
+.work-session-regular__ask-space {
+    margin-top: 145px;
+}
+
+.work-session-regular__imgs {
+    position: relative;
+}
+.work-session-regular__img {
+    display: block;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    box-shadow: 2px 2px 3px 1px #858585;
+    max-width: 250px;
+    margin: 20px 0;
+}
+
+.work-session-regular__img--left ,
+.work-session-regular__img--center,
+.work-session-regular__img--right  {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.virtual-drink-meetup__description ,
+.virtual-drink-meetup__img ,
+.hackathon__img ,
+.hackathon__description {
+    width: 46%;
+}
 
 
 
-/* =================================
-faq.html
-===================================== */
-/* 仮設定 */
+
 /* =================================
 faq.html
 ===================================== */
