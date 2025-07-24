@@ -26,13 +26,27 @@ window.addEventListener('scroll', function () {
     const footerTop = footer.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
-    if (footerTop < windowHeight) {
+    if (footerTop < windowHeight ) { // フッターが画面の下から100px以内に来たら
         header.style.height ='100px';
         footer.style.opacity ='1';
     } else {
         header.style.height = '80px';
         footer.style.opacity = '0';
     }
+});
+
+
+//  ----------------------------------------------------
+//  FAQのQ.をクリックしたら、A.を表示する
+//  ----------------------------------------------------
+$(document).ready(function() {
+  // すべての質問の要素（.faq_item--q）がクリックされたときの処理
+  $('.faq_item--q').on('click', function() {
+    $(this).next('.faq_item--a').slideToggle();
+
+    // クリックされた質問に 'active' クラスを付け外しして、CSSでアイコンなどを変更できるようにする
+    $(this).toggleClass('active');
+  });
 });
 
 //  ----------------------------------------------------
