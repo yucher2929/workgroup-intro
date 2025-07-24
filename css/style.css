@@ -255,32 +255,32 @@ index.html
 }
 
 .about__voice__left--text::before {
-      position: absolute;
-      content: "";
-      width: 30px;
-      height: 30px;
-      border-top: 15px solid transparent;
-      border-right: 15px solid #ffffff;
-      border-bottom: 15px solid transparent;
-      top: 30%;
-      left: -30px;
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-top: 15px solid transparent;
+    border-right: 15px solid #ffffff;
+    border-bottom: 15px solid transparent;
+    top: 30%;
+    left: -30px;
 }
 
 .about__voice__right--text {
-      margin-right: 25px;
-      position: relative;
+    margin-right: 25px;
+    position: relative;
 }
 
 .about__voice__right--text::after {
-      position: absolute;
-      content: "";
-      width: 30px;
-      height: 30px;
-      border-top: 15px solid transparent;
-      border-left: 15px solid #ffffff;
-      border-bottom: 15px solid transparent;
-      top: 30%;
-      right: -30px;
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-top: 15px solid transparent;
+    border-left: 15px solid #ffffff;
+    border-bottom: 15px solid transparent;
+    top: 30%;
+    right: -30px;
 }
 
 
@@ -331,13 +331,13 @@ event.html
 .event__sub-title {
     font-size: 60px;
     margin-bottom: 50px;
-}    
+}
 
 .event__sub-title span {
     font-size: 80px;
     letter-spacing: 0.1em;
     padding-right: 50px;
-}    
+}
 
 .event__items {
     display: flex;
@@ -378,6 +378,7 @@ event.html
 .work-session-regular__imgs {
     position: relative;
 }
+
 .work-session-regular__img {
     display: block;
     border-top-right-radius: 100px;
@@ -387,34 +388,21 @@ event.html
     margin: 20px 0;
 }
 
-.work-session-regular__img--left ,
+.work-session-regular__img--left,
 .work-session-regular__img--center,
-.work-session-regular__img--right  {
+.work-session-regular__img--right {
     position: absolute;
     top: 0;
     left: 0;
 }
 
 
-.virtual-drink-meetup__description ,
-.virtual-drink-meetup__img ,
-.hackathon__img ,
+.virtual-drink-meetup__description,
+.virtual-drink-meetup__img,
+.hackathon__img,
 .hackathon__description {
     width: 46%;
 }
-
-
-
-
-/* =================================
-faq.html
-===================================== */
-/* 仮設定 */
-
-/* 仮設定 */
-
-
-
 
 /* =================================
 faq.html
@@ -546,7 +534,7 @@ faq.html
 }
 
 .form-btn {
-    border: 1px solid ;
+    border: 1px solid;
     margin: 32px auto;
     padding: 15px;
     width: 250px;
