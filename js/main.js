@@ -26,12 +26,11 @@ window.addEventListener('scroll', function () {
     const footerTop = footer.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
-    if (footerTop < windowHeight) {
-        const footerHeight = footer.offsetHeight;
-        header.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-        header.style.transform = `translateY(-${footerHeight}px)`;
+    if (footerTop < windowHeight - 30) {
+        header.style.height ='100px';
+        footer.style.opacity ='1';
     } else {
-        header.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-        header.style.transform = 'translateY(0)'
+        header.style.height = '80px';
+        footer.style.opacity = '0';
     }
 });
