@@ -26,7 +26,7 @@ window.addEventListener('scroll', function () {
     const footerTop = footer.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
-    if (footerTop < windowHeight - 30) {
+    if (footerTop < windowHeight ) { // フッターが画面の下から100px以内に来たら
         header.style.height ='100px';
         footer.style.opacity ='1';
     } else {
