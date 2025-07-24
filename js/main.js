@@ -2,7 +2,7 @@
 //  ----------------------------------------------------
 //  headerの表示タイミング設定
 //  ----------------------------------------------------
-let pagetop = $("header");
+let pagetop = $(".header__top");
 pagetop.hide();                        // 最初に画面が表示された時は、ボタンを非表示に設定
 // スクロールイベント
 $(window).scroll(function () {
@@ -26,7 +26,7 @@ window.addEventListener('scroll', function () {
     const footerTop = footer.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
-    if (footerTop < windowHeight - 30) {
+    if (footerTop < windowHeight) {
         header.style.height ='100px';
         footer.style.opacity ='1';
     } else {
@@ -35,21 +35,9 @@ window.addEventListener('scroll', function () {
     }
 });
 
-
-// window.addEventListener('scroll', function () {
-//   const targets = document.querySelectorAll('.sub-title');
-
-//   targets.forEach(target => {
-//     const rect = target.getBoundingClientRect();
-//     const windowHeight = window.innerHeight;
-
-//     // 要素が画面の下から80%の位置に入ったらアニメーション開始
-//     if (rect.top < windowHeight * 0.8) {
-//       target.classList.add('active');
-//     }
-//   });
-// });
-
+//  ----------------------------------------------------
+//  sub-titleのアニメーション
+//  ----------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     const targets = document.querySelectorAll('.sub-title');
 
@@ -68,36 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const wrapper = document.querySelector('.about__right');
-//   const list = document.querySelector('.scroll-animate');
-
-//   // スクロール用にリストを複製して2つ並べる
-//   const clone = list.cloneNode(true);
-//   wrapper.appendChild(clone);
-
-//   // 2つを内包するようにラッパーの中のリストをまとめて取得
-//   const allLists = wrapper.querySelectorAll('.scroll-animate');
-
-//   // オフセット高さを1つのリストから取得
-//   const listHeight = list.offsetHeight;
-
-//   // 親ラッパーの中に2つ並べる
-//   allLists[0].style.top = '0px';
-//   allLists[1].style.top = `${listHeight}px`;
-
-//   // アニメーション（ループ）
-//   gsap.to(allLists, {
-//     y: `-=${listHeight}`,
-//     duration: 45,
-//     ease: "none",
-//     repeat: -1,
-//     modifiers: {
-//       y: gsap.utils.unitize(y => parseFloat(y) % listHeight)
-//     }
-//   });
-// });
-
+//  ----------------------------------------------------
+//  ABOUTページの画像スクロール
+//  ----------------------------------------------------
 window.addEventListener('load', () => {
   const wrapper = document.querySelector('.about__right');
   const list = wrapper.querySelector('.scroll-animate');
