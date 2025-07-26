@@ -104,7 +104,7 @@ window.addEventListener('load', () => {
 
 
 //  ----------------------------------------------------
-//  EVENT　line animation
+//  EVENT lineアニメーション
 //  ----------------------------------------------------
 window.addEventListener("DOMContentLoaded", () => {
     const boxes = document.querySelectorAll('.boxPath');
@@ -128,6 +128,75 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
     animate();
+    });
+});
+
+
+//  ----------------------------------------------------
+//  EVENT iconaアニメーション
+//  ----------------------------------------------------
+window.addEventListener('load', function() {
+    setTimeout(function() {
+    // 表示したい3つのクラス名を配列にまとめる
+    const classNames = ['seminar__img', 'ask-space__img', 'beginner__img'];
+
+    classNames.forEach(className => {
+      // それぞれのクラスの要素を全部取得
+        const elements = document.querySelectorAll(`.${className}`);
+        elements.forEach(el => {
+        el.style.opacity = '1'; // 表示に変更
+        });
+    });
+    }, 3000);
+});
+
+//  ----------------------------------------------------
+//  EVENT オンライン飲み会 画像切り替え
+//  ----------------------------------------------------
+$(window).scroll(function () {
+    $(".white-monitor").each(function () {
+      // スクロールした距離
+        let scroll = $(window).scrollTop();
+        let target = $(this).offset().top;
+      // 画面の高さ
+        let windowHeight = $(window).height();
+      // .ehite-monitorクラスの要素が画面下にきてから400px通過した
+      // したタイミングで要素を表示
+        if (scroll > target - windowHeight + 400) {
+            $(this).css("display", "none");
+        } 
+    });
+    
+});
+
+
+
+//  ----------------------------------------------------
+//  EVENT 一文字ずつ表示
+//  ----------------------------------------------------
+$(function () {
+  let typed = false; // 一度だけ実行させるフラグ
+
+    $(window).on("scroll", function () {
+        if (!typed && $(window).scrollTop() > 1400) {
+        typed = true; // もう一回はしない
+
+        $(".typewriter").each(function () {
+            const text = $(this).text();
+            $(this).empty(); // 一度中身を消す
+
+            let i = 0;
+            const speed = 50; // 1文字ずつ表示する速度（ミリ秒）
+
+            const interval = setInterval(() => {
+            $(this).append(text.charAt(i));
+            i++;
+            if (i >= text.length) {
+            clearInterval(interval);
+            }
+            }, speed);
+        });
+        }
     });
 });
 
