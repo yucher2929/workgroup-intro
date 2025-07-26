@@ -451,9 +451,19 @@ faq.html
 ===================================== */
 /* 仮設定 */
 /* #faq */
+
+.faq_content {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
 #faq .section-title {
     margin-bottom: 20px;
 }
+
 
 .faq_item--text {
     border-block: 1px solid #9E9E9E;
@@ -472,43 +482,59 @@ faq.html
     cursor: pointer;
     position: relative;
     padding-right: 30px;
-    transition: transform 0.3s ease, background-color 0.3s ease
+    transition: transform 1.0s ease, background-color 1.0s ease;
+    border-block: 1px solid #9E9E9E;
+    transition-duration: 0.2s;
 }
 
 .faq_item--q:hover {
     background-color: #99FF99;
-    transition: transform 0.3s ease, background-color 0.3s ease
-}
-
-/* 回答のテキスト */
-.faq_item--a {
-    display: none;
-    padding-left: 20px;
-    border-left: 2px solid #eee;
-    background-color: #fef4f4;
+    transition: transform 1.0s ease, background-color 1.0s ease;
+    transition-duration: 0.2s;
 }
 
 .faq_item--q::after {
     content: '+';
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     transition: transform 0.3s ease;
+    font-size: 2rem;
 }
 
 .faq_item--q.active::after {
     content: '-';
 }
 
-.faq_item--a img {
-    width: 70%;
+/* 回答のテキスト */
+.faq_item--a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out ,padding 0.5s ease-in-out;
+    padding-left: 2%;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left: 2px solid #eee;
+    background-color: #ffe5ff;
 }
 
-/* .faq_inquiry__form */
+/* .faq_item--a.open {
+    /* padding-top: 20px;
+    padding-bottom: 20px; */
+} *
+
+.faq_item--a img {
+    max-width: 70%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+
+/* .faq_inquiry__form お問い合わせ*/
 .faq_inquiry__form {
     background-color: #fef4f4;
-    margin:20px auto 80px;
+    margin: 20px auto 80px;
     padding-bottom: 30px;
 }
 

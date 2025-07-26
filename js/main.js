@@ -1,81 +1,72 @@
-
 //  ----------------------------------------------------
 //  headerの表示タイミング設定
 //  ----------------------------------------------------
 let pagetop = $(".header__top");
-pagetop.hide();                        // 最初に画面が表示された時は、ボタンを非表示に設定
+pagetop.hide(); // 最初に画面が表示された時は、ボタンを非表示に設定
 // スクロールイベント
 $(window).scroll(function () {
-    if ($(this).scrollTop() > 750) {   //スクロール位置が750pxを超えた場合
-        pagetop.fadeIn();              //ボタンを表示する
-    } else {                           //スクロール位置が750px未満の場合
-        pagetop.fadeOut();             //トップに戻るボタンを非表示にする
-    }
+  if ($(this).scrollTop() > 750) {
+    //スクロール位置が750pxを超えた場合
+    pagetop.fadeIn(); //ボタンを表示する
+  } else {
+    //スクロール位置が750px未満の場合
+    pagetop.fadeOut(); //トップに戻るボタンを非表示にする
+  }
 });
 
 //  ----------------------------------------------------
 //  headerからfooterの切り替え
 //  ----------------------------------------------------
-window.addEventListener('scroll', function () {
-    const header = document.getElementById('header');
-    const footer = document.getElementById('footer');
+window.addEventListener("scroll", function () {
+  const header = document.getElementById("header");
+  const footer = document.getElementById("footer");
 
-    //いずれかの要素が存在しない場合は処理を中断
-    if (!header || !footer) return;
+  //いずれかの要素が存在しない場合は処理を中断
+  if (!header || !footer) return;
 
-    const footerTop = footer.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
+  const footerTop = footer.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
 
-    if (footerTop < windowHeight ) { // フッターが画面の下から100px以内に来たら
-        header.style.height ='100px';
-        footer.style.opacity ='1';
-    } else {
-        header.style.height = '80px';
-        footer.style.opacity = '0';
-    }
-});
-
-
-//  ----------------------------------------------------
-//  FAQのQ.をクリックしたら、A.を表示する
-//  ----------------------------------------------------
-$(document).ready(function() {
-  // すべての質問の要素（.faq_item--q）がクリックされたときの処理
-  $('.faq_item--q').on('click', function() {
-    $(this).next('.faq_item--a').slideToggle();
-
-    // クリックされた質問に 'active' クラスを付け外しして、CSSでアイコンなどを変更できるようにする
-    $(this).toggleClass('active');
-  });
+  if (footerTop < windowHeight) {
+    // フッターが画面の下から100px以内に来たら
+    header.style.height = "100px";
+    footer.style.opacity = "1";
+  } else {
+    header.style.height = "80px";
+    footer.style.opacity = "0";
+  }
 });
 
 //  ----------------------------------------------------
 //  sub-titleのアニメーション
 //  ----------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-    const targets = document.querySelectorAll('.sub-title');
+document.addEventListener("DOMContentLoaded", () => {
+  const targets = document.querySelectorAll(".sub-title");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, {
-        threshold: 0.8
-    });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    },
+    {
+      threshold: 0.8,
+    }
+  );
 
-    targets.forEach(target => {
-        observer.observe(target);
-    });
+  targets.forEach((target) => {
+    observer.observe(target);
+  });
 });
 
 //  ----------------------------------------------------
 //  ABOUTページの画像スクロール
 //  ----------------------------------------------------
-window.addEventListener('load', () => {
-  const wrapper = document.querySelector('.about__right');
-  const list = wrapper.querySelector('.scroll-animate');
+window.addEventListener("load", () => {
+  const wrapper = document.querySelector(".about__right");
+  const list = wrapper.querySelector(".scroll-animate");
 
   // クローンを作成
   const clone = list.cloneNode(true);
@@ -85,10 +76,10 @@ window.addEventListener('load', () => {
   const listHeight = list.offsetHeight;
 
   // 複製リストの位置調整
-  clone.style.top = listHeight + 'px';
+  clone.style.top = listHeight + "px";
 
   // 2つのリストをまとめて取得
-  const lists = wrapper.querySelectorAll('.scroll-animate');
+  const lists = wrapper.querySelectorAll(".scroll-animate");
 
   // アニメーション実行
   gsap.to(lists, {
@@ -97,7 +88,47 @@ window.addEventListener('load', () => {
     ease: "none",
     repeat: -1,
     modifiers: {
-      y: gsap.utils.unitize(y => parseFloat(y) % listHeight)
-    }
+      y: gsap.utils.unitize((y) => parseFloat(y) % listHeight),
+    },
+  });
+});
+
+// //  ----------------------------------------------------
+// //  FAQのQ.をクリックしたら、A.を表示する
+// //  ----------------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  // すべてのQ要素（質問部分）を取得します
+  const faqQuestions = document.querySelectorAll(".faq_item--q");
+
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", function () {
+      const faqItem = this.closest(".faq_item");
+      const answer = faqItem.querySelector(".faq_item--a");
+
+      // 現在開いているすべての回答を閉じる処理
+      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
+        const otherQuestion = otherAnswer.previousElementSibling;
+        if (otherAnswer !== answer) {
+          otherAnswer.style.maxHeight = null;
+          otherAnswer.classList.remove("open");
+          if (otherQuestion) {
+            otherQuestion.classList.remove("active");
+          }
+        }
+      });
+
+      // クリックされた回答を開閉する処理
+      if (answer.classList.contains("open")) {
+        // すでに開いている場合は閉じる
+        answer.style.maxHeight = null;
+        answer.classList.remove("open");
+        this.classList.remove("active");
+      } else {
+        // 開いていない場合は開く
+        answer.classList.add("open");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        this.classList.add("active");
+      }
+    });
   });
 });
