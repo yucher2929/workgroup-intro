@@ -101,3 +101,33 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+
+//  ----------------------------------------------------
+//  EVENT　line animation
+//  ----------------------------------------------------
+window.addEventListener("DOMContentLoaded", () => {
+    const boxes = document.querySelectorAll('.boxPath');
+    const step = 4;
+
+    boxes.forEach(box => {
+        const totalLength = box.getTotalLength();
+
+        box.style.strokeDasharray = totalLength;
+        box.style.strokeDashoffset = 0;  // 最初は全部見えてる状態
+
+        let offset = 0;
+
+        function animate() {
+            offset += step;
+            if (offset > totalLength) offset = totalLength;
+            box.style.strokeDashoffset = offset;
+
+            if (offset < totalLength) {
+                requestAnimationFrame(animate);
+            }
+        }
+    animate();
+    });
+});
+

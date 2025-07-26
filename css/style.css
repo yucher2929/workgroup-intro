@@ -330,45 +330,14 @@ index.html
 /* =================================
 event.html
 ===================================== */
+/* ページ内共通 */
 .event__section {
     position: relative;
     margin-bottom: 100px;
 }
 
-/* title underline animation ---------*/
-.event__title--underline {
-    position: absolute;
-    padding-top: 20px;
-}
-
-.circle {
-    position: relative;
-    width: 500px;
-    height: 200px;
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-
-.circle1 {
-    position: relative;
-    left: -60px;
-    z-index: -20;
-    background-color: #333;
-}
-
-.circle2 {
-    position: relative;
-    top: -205px;
-    left: -60px;
-    width: 510px;
-    z-index: -15;
-    background-color: #D9D9D9;
-}
-
-/* ----------------------------------- */
-
-
 .event__sub-title {
+    max-width: 60%;
     font-size: 60px;
     margin-bottom: 50px;
 }
@@ -384,58 +353,24 @@ event.html
     justify-content: space-between;
 }
 
-.section__label {
-    font-size: 35px;
-    padding-bottom: 30px;
-}
-
-
 .work-session-regular__item {
     width: 32%;
+    text-align: center;
 }
 
-.work-session-regular__item ul li {
-    display: block;
+.icon-wrapper {
     position: relative;
-    padding-bottom: 30px;
-}
-
-.work-session-regular__item ul li::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 50px;
     width: 100%;
-    height: 1px;
-    background-color: #9E9E9E;
+    text-align: center;
 }
 
-
-.work-session-regular__ask-space {
-    margin-top: 145px;
-}
-
-.work-session-regular__imgs {
+.icon {
     position: relative;
+    border: 1px solid blueviolet;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
 }
-
-.work-session-regular__img {
-    display: block;
-    border-top-right-radius: 100px;
-    border-bottom-left-radius: 100px;
-    box-shadow: 2px 2px 3px 1px #858585;
-    max-width: 250px;
-    margin: 20px 0;
-}
-
-.work-session-regular__img--left,
-.work-session-regular__img--center,
-.work-session-regular__img--right {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 
 .virtual-drink-meetup__description,
 .virtual-drink-meetup__img,
@@ -443,6 +378,93 @@ event.html
 .hackathon__description {
     width: 46%;
 }
+
+.section__label {
+    font-size: 35px;
+    padding-bottom: 30px;
+}
+
+.event__item-list {
+    margin-top: 30px;
+}
+
+.event__item-list li {
+    display: block;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* 作業会 セミナー */
+.seminar__icon {
+    position: absolute;
+    top: 0;
+    right: -50px;
+}
+
+.seminar__label {
+    margin-top: 180px;
+}
+
+/* 作業会 質問部屋 */
+.ask-space__img {
+    width: auto;
+    height: 58%;
+    margin-top: 40px;
+}
+
+.ask-space__label {
+    padding-top: 80px;
+}
+
+/* 作業会作業会 初心者交流会  */
+.work-session-regular__beginner {
+    position: relative;
+}
+
+.beginner__icon {
+    position: absolute;
+    top: 0;
+    left: -50px;
+}
+
+.beginner__img {
+    width: auto;
+    height: 80%;
+    margin-top: 30px;
+}
+
+.beginner__label {
+    padding-top: 180px;
+}
+
+
+/* virtual-drink-meetup */
+.virtual-drink-meetup__img {
+    position: relative;
+}
+
+.img__cover {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background-color: #ffffff;
+    border-radius: 22px;
+    width: 448px;
+    height: 252px;
+}
+
+.beer {
+    position: absolute;
+    top: 170px;
+    right: -40px;
+}
+
 
 /* =================================
 faq.html
