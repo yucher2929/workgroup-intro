@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 /* 共通 -----------------------------------------*/
 body {
     font-family: "Barlow Condensed", sans-serif;
@@ -102,14 +104,14 @@ header {
     transition: height 0.3s ease;
 }
 
-header nav ul {
+.michroma-regular {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
     max-width: 1040px;
 }
 
-header nav ul li {
+.michroma-regular li {
     width: 19%;
     height: 50px;
     text-align: center;
@@ -118,7 +120,7 @@ header nav ul li {
     transition: 0.3s ease;
 }
 
-header nav ul li a {
+.michroma-regular li a {
     display: block;
     font-size: 22px;
     font-weight: 600;
@@ -126,7 +128,7 @@ header nav ul li a {
     letter-spacing: 0.15em;
 }
 
-header nav ul li a:hover {
+.michroma-regular li a:hover {
     background-color: #99FF99;
 }
 
@@ -336,6 +338,7 @@ event.html
 .event__section {
     position: relative;
     margin-bottom: 100px;
+
 }
 
 .event__sub-title {
@@ -366,6 +369,7 @@ event.html
     position: absolute;
     top: 0;
     width: 100%;
+    padding-top: 20px;
     text-align: center;
 }
 
@@ -421,6 +425,7 @@ svg {
 
 /* 作業会 質問部屋 */
 .work-session-regular__ask-space {
+    background-color: #dfdede;
     margin-top: 60px;
 }
 
@@ -587,6 +592,7 @@ faq.html
     margin-top: 10px;
 }
 
+
 /* .faq_inquiry__form お問い合わせ*/
 .faq_inquiry__form {
     background-color: #fef4f4;
@@ -723,16 +729,6 @@ faq.html
     .event__item-list li {
         padding-bottom: 30px;
     }
-
-    .seminar__icon {
-        left: 0;
-    }
-
-    .beginner__icon {
-        left: 0;
-    }
-
-
 }
 
 
