@@ -86,8 +86,6 @@ li {
 
 
 
-
-
 /* 共通 header -----------------------------------*/
 
 header {
@@ -322,6 +320,11 @@ index.html
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.scroll-animate li img {
+  height: auto;
+  display: block;
 }
 
 .scroll-animate li:last-of-type {
@@ -695,6 +698,68 @@ faq.html
 
 /* responsive -----------------------------------*/
 @media(max-width:768px) {
+    /* =================================
+    About
+    ===================================== */
+
+    .about__top {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .section-title-rotate {
+        width: 100%;
+        margin: 60px 0 30px 0;
+    }
+    
+    .section-title-rotate .section-title {
+        transform: rotate(0deg);
+        left: 0;
+        font-size: 100px;
+    }
+
+    .about__list {
+        width: 100%;
+    }
+
+    .about__list__item--link {
+        font-size: 50px;
+        font-weight: bold;
+        padding: 30px;
+    }
+
+    .about__list__item--link span {
+        font-size: 70px;
+        padding-right: 30px;
+    }
+
+    .about {
+        flex-direction: column;
+    }
+
+    .about__left, .about__right {
+        width: 100%;
+    }
+
+    .about__right {
+    height: 400px;
+  }
+
+  .scroll-animate {
+    flex-direction: row;
+    gap: 20px;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .scroll-animate li {
+    min-width: 80vw;
+  }
+
+  .scroll-animate li img {
+    height: 330px;
+  }
+
     
     /* =================================
     Event
