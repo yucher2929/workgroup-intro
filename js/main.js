@@ -206,3 +206,16 @@ $(function () {
     });
 });
 
+
+
+//  ----------------------------------------------------
+//  top animation
+//  ----------------------------------------------------
+// ローディング後ロゴが出てくる
+window.addEventListener("DOMContentLoaded", () => {
+  const loader = document.querySelector(".loader__logo");
+
+  setTimeout(() => {
+    loader.style.opacity = "1";
+  }, 2500); 
+});
