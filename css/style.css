@@ -354,23 +354,25 @@ event.html
 }
 
 .work-session-regular__item {
+    position: relative;
     width: 32%;
+    margin-bottom: 40px;
     text-align: center;
 }
 
 .icon-wrapper {
-    position: relative;
+    position: absolute;
+    top: 0;
     width: 100%;
     text-align: center;
 }
 
 .icon {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-    border-radius: 50%;
     box-shadow: 1px 1px 1px 1px #454545b7;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
 }
 
 .seminar__img,
@@ -383,26 +385,24 @@ event.html
 .virtual-drink-meetup__description,
 .hackathon__description {
     width: 46%;
+
 }
 
 .virtual-drink-meetup__imgs,
 .hackathon__img {
-    width: 35%;
+    display: block;
+    width: 40%;
 }
 
 .section__label {
+    padding: 130px 0 50px;
     font-size: 35px;
-    padding-bottom: 30px;
-}
-
-.event__item-list {
-    margin-top: 30px;
 }
 
 .event__item-list li {
     display: block;
     position: relative;
-    padding-bottom: 30px;
+    padding-bottom: 25px;
 }
 
 svg {
@@ -411,82 +411,76 @@ svg {
     left: 0;
 }
 
+/* 01 作業会定例 */
 /* 作業会 セミナー */
-.seminar__icon {
-    position: absolute;
-    top: 0;
-    right: -50px;
-}
-
-.seminar__label {
-    margin-top: 180px;
+.seminar__img {
+    width: 100%;
 }
 
 /* 作業会 質問部屋 */
+.work-session-regular__ask-space {
+    margin-top: 60px;
+}
+
 .ask-space__img {
-    width: auto;
-    height: 58%;
-    margin-top: 40px;
-}
-
-.ask-space__icon {
-    top: 50px;
-}
-
-.ask-space__label {
-    padding-top: 80px;
+    width: 100%;
 }
 
 /* 作業会作業会 初心者交流会  */
-.work-session-regular__beginner {
-    position: relative;
-}
-
-.beginner__icon {
-    position: absolute;
-    top: 0;
-    left: -50px;
-}
-
 .beginner__img {
     width: auto;
-    height: 80%;
-    margin-top: 30px;
+    height: 90%;
+    margin-top: 8px;
 }
 
-.beginner__label {
-    padding-top: 180px;
-}
-
-
-/* virtual-drink-meetup */
-#virtual-drink-meetup {
-    margin-bottom: 300px;
-}
-.virtual-drink-meetup__imgs {
+/* 02 オンライン飲み会 */
+.virtual-drink-meetup__items {
     position: relative;
+    width: 100%;
 }
 
 .monitor {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
 }
 
-.white-monitor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: display 0.1s ease;
+.avatars {
+    position: absolute;         
+    top: 20%;                   
+    left: 68.5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 10;               
+}
+
+.drink__avatar {
+    width: 34%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.drink__avatar.visible {
+    opacity: 1;
 }
 
 .beer {
     position: absolute;
-    top: 190px;
-    right: -15px;
-    transition: right 0.3 ease;
+    top: 40%;
+    left: 39%;
+    display: block;
+    width: 25%;
+    transform: rotate(18deg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+}
+
+.beer.visible {
+    opacity: 1;
 }
 
 
@@ -497,11 +491,12 @@ svg {
 
 .typewriter {
     position: absolute;
-    top: 75px;
-    left: 20px;
-    width: 400px;
+    top: 40px;
+    left: px;
+    width: 190px;
+    background-color: black;
+    color: #ffffff;
     font-size: 18px;
-    transform: rotate(-30deg);
 }
 
 
@@ -668,3 +663,50 @@ faq.html
 .entry_link a:hover {
     background-color: #99FF99;
 }
+
+
+/* responsive -----------------------------------*/
+@media(max-width:768px) {
+    
+    /* =================================
+    Event
+    ===================================== */
+    .event__items {
+        flex-direction: column;
+    }
+
+    .event__sub-title {
+    max-width: 100%;
+    }
+
+    .work-session-regular__item,
+    .virtual-drink-meetup__description,
+    .hackathon__description {
+        width: 100%;
+    }
+
+    .virtual-drink-meetup__imgs,
+    .hackathon__img {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+
+    .event__item-list li {
+        padding-bottom: 30px;
+    }
+
+    .seminar__icon {
+        left: 0;
+    }
+
+    .beginner__icon {
+        left: 0;
+    }
+
+
+}
+
+
+
+

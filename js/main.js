@@ -133,7 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 //  ----------------------------------------------------
-//  EVENT iconaアニメーション
+//  EVENT iconアニメーション
 //  ----------------------------------------------------
 window.addEventListener('load', function() {
     setTimeout(function() {
@@ -151,24 +151,30 @@ window.addEventListener('load', function() {
 });
 
 //  ----------------------------------------------------
-//  EVENT オンライン飲み会 画像切り替え
+//  EVENT オンライン飲み会 avatar表示
 //  ----------------------------------------------------
-$(window).scroll(function () {
-    $(".white-monitor").each(function () {
-      // スクロールした距離
-        let scroll = $(window).scrollTop();
-        let target = $(this).offset().top;
-      // 画面の高さ
-        let windowHeight = $(window).height();
-      // .ehite-monitorクラスの要素が画面下にきてから400px通過した
-      // したタイミングで要素を表示
-        if (scroll > target - windowHeight + 400) {
-            $(this).css("display", "none");
-        } 
-    });
-    
+$(window).on("scroll load", function () {
+    const scroll = $(window).scrollTop();
+    const triggerPoint = 1000; // ここは調整してね
+
+    if (scroll > triggerPoint) {
+        $(".drink__avatar, .beer").addClass("visible");
+    } else {
+        $(".drink__avatar, .beer").removeClass("visible");
+    }
 });
 
+//  ----------------------------------------------------
+//  EVENT オンライン飲み会 beer揺れ
+//  ----------------------------------------------------
+
+
+let toggled = false;
+setInterval(() => {
+    const angle = toggled ? 10 : -10;
+    $(".beer").css("transform", `rotate(${angle}deg)`);
+    toggled = !toggled;
+}, 600); // 300msごとに切り替え → カクカク揺れ
 
 
 //  ----------------------------------------------------
