@@ -72,25 +72,44 @@ window.addEventListener("load", () => {
   const clone = list.cloneNode(true);
   wrapper.appendChild(clone);
 
-  // 高さを正確に取得（画像読み込み後なのでOK）
-  const listHeight = list.offsetHeight;
+  // 画面幅によって縦 or 横スクロールを切り替え
+  const isMobile = window.innerWidth <= 768;
 
-  // 複製リストの位置調整
-  clone.style.top = listHeight + "px";
+  if (isMobile) {
+    // 横スクロールアニメーション（SP）
+    const listWidth = list.scrollWidth;
+    clone.style.left = listWidth + "px";
 
-  // 2つのリストをまとめて取得
-  const lists = wrapper.querySelectorAll(".scroll-animate");
+    const lists = wrapper.querySelectorAll(".scroll-animate");
+    gsap.set(lists, { y: 0, x: 0 });
 
-  // アニメーション実行
-  gsap.to(lists, {
-    y: `-=${listHeight}`,
-    duration: 45,
-    ease: "none",
-    repeat: -1,
-    modifiers: {
-      y: gsap.utils.unitize((y) => parseFloat(y) % listHeight),
-    },
-  });
+    gsap.to(lists, {
+      x: `-=${listWidth}`,
+      duration: 90,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize((x) => parseFloat(x) % listWidth)
+      }
+    });
+  } else {
+    // 縦スクロールアニメーション（PC）
+    const listHeight = list.offsetHeight;
+    clone.style.top = listHeight + "px";
+
+    const lists = wrapper.querySelectorAll(".scroll-animate");
+    gsap.set(lists, { y: 0, x: 0 });
+
+    gsap.to(lists, {
+      y: `-=${listHeight}`,
+      duration: 45,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        y: gsap.utils.unitize((y) => parseFloat(y) % listHeight)
+      }
+    });
+  }
 });
 
 // //  ----------------------------------------------------
@@ -139,61 +158,61 @@ document.addEventListener("DOMContentLoaded", function () {
 //  EVENT lineアニメーション
 //  ----------------------------------------------------
 window.addEventListener("DOMContentLoaded", () => {
-    const boxes = document.querySelectorAll('.boxPath');
-    const step = 4;
+  const boxes = document.querySelectorAll('.boxPath');
+  const step = 4;
 
-    boxes.forEach(box => {
-        const totalLength = box.getTotalLength();
+  boxes.forEach(box => {
+    const totalLength = box.getTotalLength();
 
-        box.style.strokeDasharray = totalLength;
-        box.style.strokeDashoffset = 0;  // 最初は全部見えてる状態
+    box.style.strokeDasharray = totalLength;
+    box.style.strokeDashoffset = 0;  // 最初は全部見えてる状態
 
-        let offset = 0;
+    let offset = 0;
 
-        function animate() {
-            offset += step;
-            if (offset > totalLength) offset = totalLength;
-            box.style.strokeDashoffset = offset;
+    function animate() {
+      offset += step;
+      if (offset > totalLength) offset = totalLength;
+      box.style.strokeDashoffset = offset;
 
-            if (offset < totalLength) {
-                requestAnimationFrame(animate);
-            }
-        }
+      if (offset < totalLength) {
+        requestAnimationFrame(animate);
+      }
+    }
     animate();
-    });
+  });
 });
 
 
 //  ----------------------------------------------------
 //  EVENT iconアニメーション
 //  ----------------------------------------------------
-window.addEventListener('load', function() {
-    setTimeout(function() {
+window.addEventListener('load', function () {
+  setTimeout(function () {
     // 表示したい3つのクラス名を配列にまとめる
     const classNames = ['seminar__img', 'ask-space__img', 'beginner__img'];
 
     classNames.forEach(className => {
       // それぞれのクラスの要素を全部取得
-        const elements = document.querySelectorAll(`.${className}`);
-        elements.forEach(el => {
+      const elements = document.querySelectorAll(`.${className}`);
+      elements.forEach(el => {
         el.style.opacity = '1'; // 表示に変更
-        });
+      });
     });
-    }, 3000);
+  }, 3000);
 });
 
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 avatar表示
 //  ----------------------------------------------------
 $(window).on("scroll load", function () {
-    const scroll = $(window).scrollTop();
-    const triggerPoint = 1000; // ここは調整してね
+  const scroll = $(window).scrollTop();
+  const triggerPoint = 1000; // ここは調整してね
 
-    if (scroll > triggerPoint) {
-        $(".drink__avatar, .beer").addClass("visible");
-    } else {
-        $(".drink__avatar, .beer").removeClass("visible");
-    }
+  if (scroll > triggerPoint) {
+    $(".drink__avatar, .beer").addClass("visible");
+  } else {
+    $(".drink__avatar, .beer").removeClass("visible");
+  }
 });
 
 //  ----------------------------------------------------
@@ -203,9 +222,9 @@ $(window).on("scroll load", function () {
 
 let toggled = false;
 setInterval(() => {
-    const angle = toggled ? 10 : -10;
-    $(".beer").css("transform", `rotate(${angle}deg)`);
-    toggled = !toggled;
+  const angle = toggled ? 10 : -10;
+  $(".beer").css("transform", `rotate(${angle}deg)`);
+  toggled = !toggled;
 }, 600); // 300msごとに切り替え → カクカク揺れ
 
 
@@ -215,27 +234,27 @@ setInterval(() => {
 $(function () {
   let typed = false; // 一度だけ実行させるフラグ
 
-    $(window).on("scroll", function () {
-        if (!typed && $(window).scrollTop() > 1400) {
-        typed = true; // もう一回はしない
+  $(window).on("scroll", function () {
+    if (!typed && $(window).scrollTop() > 1400) {
+      typed = true; // もう一回はしない
 
-        $(".typewriter").each(function () {
-            const text = $(this).text();
-            $(this).empty(); // 一度中身を消す
+      $(".typewriter").each(function () {
+        const text = $(this).text();
+        $(this).empty(); // 一度中身を消す
 
-            let i = 0;
-            const speed = 50; // 1文字ずつ表示する速度（ミリ秒）
+        let i = 0;
+        const speed = 50; // 1文字ずつ表示する速度（ミリ秒）
 
-            const interval = setInterval(() => {
-            $(this).append(text.charAt(i));
-            i++;
-            if (i >= text.length) {
+        const interval = setInterval(() => {
+          $(this).append(text.charAt(i));
+          i++;
+          if (i >= text.length) {
             clearInterval(interval);
-            }
-            }, speed);
-        });
-        }
-    });
+          }
+        }, speed);
+      });
+    }
+  });
 });
 
 
@@ -249,5 +268,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => {
     loader.style.opacity = "1";
-  }, 2500); 
+  }, 2500);
 });
