@@ -132,3 +132,121 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+//  ----------------------------------------------------
+//  EVENT lineアニメーション
+//  ----------------------------------------------------
+window.addEventListener("DOMContentLoaded", () => {
+    const boxes = document.querySelectorAll('.boxPath');
+    const step = 4;
+
+    boxes.forEach(box => {
+        const totalLength = box.getTotalLength();
+
+        box.style.strokeDasharray = totalLength;
+        box.style.strokeDashoffset = 0;  // 最初は全部見えてる状態
+
+        let offset = 0;
+
+        function animate() {
+            offset += step;
+            if (offset > totalLength) offset = totalLength;
+            box.style.strokeDashoffset = offset;
+
+            if (offset < totalLength) {
+                requestAnimationFrame(animate);
+            }
+        }
+    animate();
+    });
+});
+
+
+//  ----------------------------------------------------
+//  EVENT iconアニメーション
+//  ----------------------------------------------------
+window.addEventListener('load', function() {
+    setTimeout(function() {
+    // 表示したい3つのクラス名を配列にまとめる
+    const classNames = ['seminar__img', 'ask-space__img', 'beginner__img'];
+
+    classNames.forEach(className => {
+      // それぞれのクラスの要素を全部取得
+        const elements = document.querySelectorAll(`.${className}`);
+        elements.forEach(el => {
+        el.style.opacity = '1'; // 表示に変更
+        });
+    });
+    }, 3000);
+});
+
+//  ----------------------------------------------------
+//  EVENT オンライン飲み会 avatar表示
+//  ----------------------------------------------------
+$(window).on("scroll load", function () {
+    const scroll = $(window).scrollTop();
+    const triggerPoint = 1000; // ここは調整してね
+
+    if (scroll > triggerPoint) {
+        $(".drink__avatar, .beer").addClass("visible");
+    } else {
+        $(".drink__avatar, .beer").removeClass("visible");
+    }
+});
+
+//  ----------------------------------------------------
+//  EVENT オンライン飲み会 beer揺れ
+//  ----------------------------------------------------
+
+
+let toggled = false;
+setInterval(() => {
+    const angle = toggled ? 10 : -10;
+    $(".beer").css("transform", `rotate(${angle}deg)`);
+    toggled = !toggled;
+}, 600); // 300msごとに切り替え → カクカク揺れ
+
+
+//  ----------------------------------------------------
+//  EVENT 一文字ずつ表示
+//  ----------------------------------------------------
+$(function () {
+  let typed = false; // 一度だけ実行させるフラグ
+
+    $(window).on("scroll", function () {
+        if (!typed && $(window).scrollTop() > 1400) {
+        typed = true; // もう一回はしない
+
+        $(".typewriter").each(function () {
+            const text = $(this).text();
+            $(this).empty(); // 一度中身を消す
+
+            let i = 0;
+            const speed = 50; // 1文字ずつ表示する速度（ミリ秒）
+
+            const interval = setInterval(() => {
+            $(this).append(text.charAt(i));
+            i++;
+            if (i >= text.length) {
+            clearInterval(interval);
+            }
+            }, speed);
+        });
+        }
+    });
+});
+
+
+
+//  ----------------------------------------------------
+//  top animation
+//  ----------------------------------------------------
+// ローディング後ロゴが出てくる
+window.addEventListener("DOMContentLoaded", () => {
+  const loader = document.querySelector(".loader__logo");
+
+  setTimeout(() => {
+    loader.style.opacity = "1";
+  }, 2500); 
+});
