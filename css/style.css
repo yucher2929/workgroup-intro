@@ -129,6 +129,10 @@ header {
     background-color: #99FF99;
 }
 
+.nav-sp {
+    display: none;
+}
+
 
 /* 共通 footer -----------------------------------*/
 footer {
@@ -150,9 +154,16 @@ footer {
 index.html
 ===================================== */
 /* 仮設定 */
-.mainvisual {
+/* .mainvisual {
     height: 100vh;
     border: 3px solid;
+} */
+
+#metalifeCanvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
 }
 
 .about__top {
@@ -308,7 +319,7 @@ index.html
 }
 
 .about__right {
-    height: 1800px;
+    height: 1750px;
     overflow: hidden;
     position: relative;
 }
@@ -316,7 +327,7 @@ index.html
 .scroll-animate {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
     position: absolute;
     top: 0;
     left: 0;
@@ -703,6 +714,128 @@ faq.html
 
 /* responsive -----------------------------------*/
 @media(max-width:768px) {
+    /* =================================
+    ハンバーガーメニュー
+    ===================================== */    
+    header {
+        background-color: transparent;
+        top: 0;
+    }
+    
+    .nav-pc {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        width: 50px;
+        height: 35px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        user-select: none;
+        background: #343434;
+        border: 2px solid #00ff88;
+        border-radius: 8px;
+        padding: 8px;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        transition: all 0.3s;
+    }
+
+    .hamburger:hover {
+        box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+        transform: scale(1.05);
+    }
+
+    .hamburger span {
+        background-color: #00ff88;
+        height: 2px;
+        width: calc(100% - 16px);
+        position: absolute;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        left: 8px;
+    }
+
+    .hamburger span:nth-of-type(1) {
+        top: 25%;
+    }
+    
+    .hamburger span:nth-of-type(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .hamburger span:nth-of-type(3) {
+        bottom: 25%;
+    }
+
+    .hamburger.active span:nth-of-type(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-of-type(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
+    
+    .nav-sp {
+        display: block;
+        position: absolute;
+        top: 300%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+        opacity: 0;
+        pointer-events: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        width: 80%;
+        background: #343434;
+        border: 2px solid #00ff88;
+        border-radius: 15px;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .nav-sp.active {
+        opacity: 1;
+        transform: translate(-50%, -50%); /* 中央に戻す */
+        pointer-events: auto;
+    }
+
+    .nav-sp ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-sp li {
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #EAFFF4;
+        box-shadow: 3px 3px 3px 1px #454545b7;
+        transition: 0.3s ease;
+    }  
+
+    .nav-sp a {
+        display: block;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 50px;
+        letter-spacing: 0.15em;
+    }
+
+    .nav-sp a:hover {
+        background-color: #99FF99;
+    }
+
     /* =================================
     About
     ===================================== */

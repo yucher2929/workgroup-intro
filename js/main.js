@@ -1,4 +1,94 @@
 //  ----------------------------------------------------
+//  ファーストビュー
+//  ----------------------------------------------------
+
+window.addEventListener("load", () => {
+  const wrapper = document.querySelector(".about__right");
+  const list = wrapper.querySelector(".scroll-animate");
+
+  // クローンを作成
+  const clone = list.cloneNode(true);
+  wrapper.appendChild(clone);
+
+  // 高さと幅を取得（画像読み込み後なのでOK）
+  const listHeight = list.offsetHeight;
+  const listWidth = list.offsetWidth;
+
+  // 複製リストの初期位置調整（縦と横で切り替え）
+  const lists = wrapper.querySelectorAll(".scroll-animate");
+
+  function setVertical() {
+    lists.forEach((el, i) => {
+      el.style.top = i * listHeight + "px";
+      el.style.left = "0";
+    });
+
+    gsap.killTweensOf(lists); // 前のアニメーションをクリア
+
+    gsap.to(lists, {
+      y: `-=${listHeight}`,
+      duration: 45,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        y: gsap.utils.unitize((y) => parseFloat(y) % listHeight),
+      },
+      x: 0,
+    });
+  }
+
+  function setHorizontal() {
+    lists.forEach((el, i) => {
+      el.style.left = i * listWidth + "px";
+      el.style.top = "0";
+    });
+
+    gsap.killTweensOf(lists); // 前のアニメーションをクリア
+
+    gsap.to(lists, {
+      x: `-=${listWidth}`,
+      duration: 45,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize((x) => parseFloat(x) % listWidth),
+      },
+      y: 0,
+    });
+  }
+
+  function updateAnimation() {
+    if (window.innerWidth <= 768) {
+      list.classList.add("horizontal");
+      setHorizontal();
+    } else {
+      list.classList.remove("horizontal");
+      setVertical();
+    }
+  }
+
+  updateAnimation();
+
+  window.addEventListener("resize", () => {
+    updateAnimation();
+  });
+});
+
+
+
+
+
+//  ----------------------------------------------------
+//  ハンバーガーメニュー
+//  ----------------------------------------------------
+document.querySelector('.hamburger').addEventListener('click', function () {
+  this.classList.toggle('active');
+  document.querySelector('.nav-sp').classList.toggle('active');
+});
+
+
+
+//  ----------------------------------------------------
 //  headerの表示タイミング設定
 //  ----------------------------------------------------
 let pagetop = $(".header__top");
