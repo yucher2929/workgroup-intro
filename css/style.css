@@ -339,7 +339,8 @@ event.html
 /* ページ内共通 */
 .event__section {
     position: relative;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
+    margin-bottom: 70px;
 
 }
 
@@ -365,6 +366,8 @@ event.html
     width: 32%;
     margin-bottom: 40px;
     text-align: center;
+    background-color: #dfdede;
+    box-shadow: 1px 1px 1px 1px #454545b7;
 }
 
 .icon-wrapper {
@@ -392,14 +395,17 @@ event.html
 
 .virtual-drink-meetup__description,
 .hackathon__description {
-    width: 46%;
+    width: 60%;
+    line-height: 60px;
+    /* background-color: #dfdede;
+    box-shadow: 1px 1px 1px 1px #454545b7; */
 
 }
 
 .virtual-drink-meetup__imgs,
 .hackathon__img {
     display: block;
-    width: 40%;
+    width: 30%;
 }
 
 .section__label {
@@ -419,23 +425,24 @@ svg {
     left: 0;
 }
 
+
 /* 01 作業会定例 */
-/* 作業会 セミナー */
+    /* 作業会 セミナー */
 .seminar__img {
     width: 100%;
 }
 
-/* 作業会 質問部屋 */
-.work-session-regular__ask-space {
+    /* 作業会 質問部屋 */
+/* .work-session-regular__ask-space {
     background-color: #dfdede;
     margin-top: 60px;
-}
+} */
 
 .ask-space__img {
     width: 100%;
 }
 
-/* 作業会作業会 初心者交流会  */
+    /* 作業会作業会 初心者交流会  */
 .beginner__img {
     width: auto;
     height: 90%;
@@ -443,9 +450,12 @@ svg {
 }
 
 /* 02 オンライン飲み会 */
-.virtual-drink-meetup__items {
+.virtual-drink-meetup {
+    padding-bottom: 50px;
+}
+
+.virtual-drink-meetup__imgs {
     position: relative;
-    width: 100%;
 }
 
 .monitor {
@@ -455,11 +465,13 @@ svg {
 
 .avatars {
     position: absolute;         
-    top: 20%;                   
-    left: 68.5%;
+    top: 19%;                   
+    left: 9%;
+    width: 82%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
     z-index: 10;               
 }
 
@@ -478,10 +490,10 @@ svg {
 
 .beer {
     position: absolute;
-    top: 40%;
-    left: 39%;
+    top:200px;
+    left: -40%;
     display: block;
-    width: 25%;
+    width: 60%;
     transform: rotate(18deg);
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -493,19 +505,24 @@ svg {
 }
 
 
-/* ハッカソン */
-.hackathon__items {
+/*03  ハッカソン */
+.hackathon {
+    padding-bottom: 50px;
+}
+
+.hackathon__img {
     position: relative;
+    width: 34%;
+    margin-top: 18px;
 }
 
 .typewriter {
     position: absolute;
-    top: 40px;
-    left: px;
-    width: 190px;
-    background-color: black;
+    top: 6%;
+    left: 5%;
+    width: 55%;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 
@@ -774,10 +791,10 @@ faq.html
     }
 
     .event__sub-title {
-    max-width: 100%;
+        max-width: 100%;
     }
 
-    .work-session-regular__item,
+    .work-session-regular__item
     .virtual-drink-meetup__description,
     .hackathon__description {
         width: 100%;
@@ -785,13 +802,16 @@ faq.html
 
     .virtual-drink-meetup__imgs,
     .hackathon__img {
-        width: 80%;
+        width: 40%;
         margin: 0 auto;
     }
 
-
     .event__item-list li {
         padding-bottom: 30px;
+    }
+
+    .hackathon__img{
+        padding-bottom: 35px;
     }
 }
 
