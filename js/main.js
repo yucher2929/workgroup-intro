@@ -75,9 +75,6 @@ window.addEventListener("load", () => {
 });
 
 
-
-
-
 //  ----------------------------------------------------
 //  ハンバーガーメニュー
 //  ----------------------------------------------------
@@ -154,53 +151,43 @@ document.addEventListener("DOMContentLoaded", () => {
 //  ----------------------------------------------------
 //  ABOUTページの画像スクロール
 //  ----------------------------------------------------
-window.addEventListener("load", () => {
-  const wrapper = document.querySelector(".about__right");
-  const list = wrapper.querySelector(".scroll-animate");
 
-  // クローンを作成
-  const clone = list.cloneNode(true);
-  wrapper.appendChild(clone);
+function setupScrollAnimation() {
+  // PC用のリストとSP用のリスト要素を取得
+  const pcList = document.querySelector('.scroll-animate');
+  const spList = document.querySelector('.scroll-animate-sp');
+  
+  // どちらかの要素が存在しない場合は処理しない
+  if (!pcList || !spList) return;
 
-  // 画面幅によって縦 or 横スクロールを切り替え
-  const isMobile = window.innerWidth <= 768;
+  // 画面幅が768px以下（スマートフォン）の場合
+  if (window.innerWidth <= 768) {
+    // PC用リストは非表示
+    pcList.style.display = 'none';
+    // SP用リストは表示（横並び用）
+    spList.style.display = 'flex';
 
-  if (isMobile) {
-    // 横スクロールアニメーション（SP）
-    const listWidth = list.scrollWidth;
-    clone.style.left = listWidth + "px";
-
-    const lists = wrapper.querySelectorAll(".scroll-animate");
-    gsap.set(lists, { y: 0, x: 0 });
-
-    gsap.to(lists, {
-      x: `-=${listWidth}`,
-      duration: 90,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => parseFloat(x) % listWidth)
-      }
-    });
+    // クローンされていない場合（初回のみ処理）
+    if (!spList.dataset.cloned) {
+      const items = Array.from(spList.children);
+      items.forEach((item) => {
+        spList.appendChild(item.cloneNode(true));
+      });
+      spList.dataset.cloned = 'true';
+    }
   } else {
-    // 縦スクロールアニメーション（PC）
-    const listHeight = list.offsetHeight;
-    clone.style.top = listHeight + "px";
-
-    const lists = wrapper.querySelectorAll(".scroll-animate");
-    gsap.set(lists, { y: 0, x: 0 });
-
-    gsap.to(lists, {
-      y: `-=${listHeight}`,
-      duration: 45,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        y: gsap.utils.unitize((y) => parseFloat(y) % listHeight)
-      }
-    });
+    // SP用リストは非表示
+    spList.style.display = 'none';
+    // PC用リストは表示
+    pcList.style.display = 'flex';
   }
-});
+}
+
+// ページ読み込み時に実行
+window.addEventListener('DOMContentLoaded', setupScrollAnimation);
+// リサイズ時にも実行
+window.addEventListener('resize', setupScrollAnimation);
+
 
 // //  ----------------------------------------------------
 // //  FAQのQ.をクリックしたら、A.を表示する

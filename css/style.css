@@ -322,23 +322,32 @@ index.html
     position: relative;
 }
 
-.scroll-animate {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+.scroll-animate, .scroll-animate-sp {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    
 }
 
-.scroll-animate li img {
-  height: auto;
-  display: block;
+.scroll-animate {
+    flex-direction: column;
+    width: 100%;
+    top: 0;
+    left: 0;
+    animation-duration: 30s;
+    animation-name: scroll-vertical;
 }
 
-.scroll-animate li:last-of-type {
-    margin-bottom: 50px;
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 
@@ -788,10 +797,11 @@ faq.html
         opacity: 0;
         pointer-events: none;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         padding: 25px;
         width: 80%;
+        height: 100%;
         background: #343434;
         border: 2px solid #00ff88;
         border-radius: 15px;
@@ -873,24 +883,41 @@ faq.html
         width: 100%;
     }
 
+    .about__left__item {
+        margin-bottom: 80px;
+    }
+
     .about__right {
-    height: 400px;
-  }
+        height: 300px;
+        overflow: hidden;
+    }
 
-  .scroll-animate {
-    flex-direction: row;
-    gap: 20px;
-    position: relative;
-    white-space: nowrap;
-  }
+    .scroll-animate-sp, .scroll-animate-sp-clone {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        animation: scroll-horizontal 40s linear infinite;
+        white-space: nowrap;
+    }
 
-  .scroll-animate li {
-    min-width: 80vw;
-  }
+    @keyframes scroll-horizontal {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
 
-  .scroll-animate li img {
-    height: 330px;
-  }
+    .scroll-animate-sp li {
+        min-width: 60vw;
+        height: 300px;
+        flex: 0 0 auto;
+    }
+
+    .scroll-animate-sp li img {
+        height: 100%;
+    }
 
     
     /* =================================
