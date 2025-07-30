@@ -102,7 +102,7 @@ function setupScrollAnimation() {
     // SP用リストは表示（横並び用）
     spList.style.display = 'flex';
 
-    // クローンされていない場合（初回のみ処理）
+    // SP用のリストのクローンされていない場合（初回のみ処理）
     if (!spList.dataset.cloned) {
       const items = Array.from(spList.children);
       items.forEach((item) => {
@@ -115,8 +115,19 @@ function setupScrollAnimation() {
     spList.style.display = 'none';
     // PC用リストは表示
     pcList.style.display = 'flex';
+
+    // PC用のリストのクローンされていない場合
+    if (!pcList.dataset.cloned) {
+      const items = Array.from(pcList.children);
+      items.forEach((item) => {
+        pcList.appendChild(item.cloneNode(true));
+      });
+      pcList.dataset.cloned = 'true';
+    }
   }
 }
+
+
 
 // ページ読み込み時に実行
 window.addEventListener('DOMContentLoaded', setupScrollAnimation);
