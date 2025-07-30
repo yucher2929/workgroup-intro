@@ -153,24 +153,230 @@ footer {
 /* =================================
 index.html
 ===================================== */
-/* 仮設定 */
-/* .mainvisual {
-    height: 100vh;
-    border: 3px solid;
-} */
-
 #metalifeCanvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  z-index: 5;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: relative; 
+    z-index: 5;
 }
 
-.about__top {
+/* metalifeCanvas */
+.panel-wrapper {
+    height: 200vh;
+}
+
+.panel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5%;
+    transition: gap 0.8s ease;
+    
+    width: 100%;
     height: 100vh;
+    background-color: #000;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.panel.no-gap {
+    gap: 0;
+    background-color: #ededed;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card, .card-inner {
+    transition: transform 1s ease;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; /* 子要素を3Dで保つ */
+}
+
+.card:hover .card-inner {
+    transform: rotateX(360deg); 
+}
+
+.card-inner.flip {
+    transform: rotateX(180deg); 
+}
+
+.card-inner.flip:hover {
+    transform: rotateX(180deg) !important;
+}
+
+.card-inner.animate-flip {
+    transition: transform 2s ease;
+    transform: rotateX(0deg);
+}
+
+.front, .back {
+    position: absolute;    
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 裏面非表示設定 */
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card.no-border .front {
+    border: none;
+    border-radius: 0;
+}
+
+.card.no-border .back {
+    border: none;
+    column-gap: 0;
+    row-gap: 0;
+    border-radius: 0;
+}
+
+.front {
+    background-color: #333;
+    align-items: center;
+    overflow: hidden;
+}
+
+.front img {
+    position: absolute;
+    width: 500%;
+    height: 500%;
+}
+
+.back {
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    background-color: #EDEDED;
+    text-align: center;
+    overflow: hidden;
+    transform: rotateX(180deg); /* 裏側は180度回転 */
+}
+
+
+.back-inner {
+    position: absolute;
+    width: 500%;
+    height: 500%;
+    background-color: #EDEDED;
+    text-align: center;
+}
+
+.back-inner p {
+    position: absolute;
+    top: 255px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1000px;
+    color: #111;
+    font-size: 45px;
+    z-index: 2;
+    text-align: center;
+}
+
+.back-inner img {
+    max-width: 800px;
+    height: auto;
+    margin-top: 400px;
+    top: 1000px;
+    object-fit: cover; /* なくてもOK、好みで */
+}
+
+
+/* front card potsition */
+/* 1行目 */
+.card1 img {top: 0;  left: 0;}
+.card2 img {top: 0;  left: -97%;}
+.card3 img {top: 0;  left: -199%;}
+.card4 img {top: 0;  left: -303%;}
+.card5 img {top: 0;  left: -398%;}
+
+/* 2行目 */
+.card6 img {top: -99%;  left: 0;}
+.card7 img {top: -99%;  left: -97%;}
+.card8 img {top: -99%;  left: -199%;}
+.card9 img {top: -99%;  left: -303%;}
+.card10 img {top: -99%;  left: -398%;}
+
+/* 3行目 */
+.card11 img {top: -200%;  left: 0;}
+.card12 img {top: -200%;  left: -97%;}
+.card13 img {top: -200%;  left: -199%;}
+.card14 img {top: -200%;  left: -303%;}
+.card15 img {top: -200%;  left: -398%;}
+
+/* 4行目 */
+.card16 img {top: -302%;  left: 0;}
+.card17 img {top: -302%;  left: -97%;}
+.card18 img {top: -302%;  left: -199%;}
+.card19 img {top: -302%;  left: -303%;}
+.card20 img {top: -302%;  left: -398%;}
+
+/* 5行目 */
+.card21 img {top: -400%;  left: 0;}
+.card22 img {top: -400%;  left: -97%;}
+.card23 img {top: -400%;  left: -199%;}
+.card24 img {top: -400%;  left: -303%;}
+.card25 img {top: -400%;  left: -398%;}
+
+
+/* .back card potsition*/
+/* 1行目 */
+.card1  .back-inner { top:   0%;     left:    0%; }
+.card2  .back-inner { top:   0%;     left: -100%; }
+.card3  .back-inner { top:   0%;     left: -200%; }
+.card4  .back-inner { top:   0%;     left: -300%; }
+.card5  .back-inner { top:   0%;     left: -400%; }
+
+/* 2行目 */
+.card6  .back-inner { top: -100%;    left:    0%; }
+.card7  .back-inner { top: -100%;    left: -100%; }
+.card8  .back-inner { top: -100%;    left: -200%; }
+.card9  .back-inner { top: -100%;    left: -300%; }
+.card10 .back-inner { top: -100%;    left: -400%; }
+
+/* 3行目 */
+.card11 .back-inner { top: -200%;    left:    0%; }
+.card12 .back-inner { top: -200%;    left: -100%; }
+.card13 .back-inner { top: -200%;    left: -200%; }
+.card14 .back-inner { top: -200%;    left: -300%; }
+.card15 .back-inner { top: -200%;    left: -400%; }
+
+/* 4行目 */
+.card16 .back-inner { top: -300%;    left:    0%; }
+.card17 .back-inner { top: -300%;    left: -100%; }
+.card18 .back-inner { top: -300%;    left: -200%; }
+.card19 .back-inner { top: -300%;    left: -300%; }
+.card20 .back-inner { top: -300%;    left: -400%; }
+
+/* 5行目 */
+.card21 .back-inner { top: -400%;    left:    0%; }
+.card22 .back-inner { top: -400%;    left: -100%; }
+.card23 .back-inner { top: -400%;    left: -200%; }
+.card24 .back-inner { top: -400%;    left: -300%; }
+.card25 .back-inner { top: -400%;    left: -400%; }
+
+
+
+.about__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100vh;
+    margin-top: 100vh;
 }
 
 .section-title-rotate {
@@ -609,6 +815,10 @@ faq.html
     border-left: 2px solid #eee;
     background-color: #ffe5ff;
 }
+
+
+
+
 
 /* .faq_item--a.open {
     padding-top: 20px;
