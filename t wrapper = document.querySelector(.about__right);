@@ -1,0 +1,21 @@
+[1mdiff --git a/css/style.css b/css/style.css[m
+[1mindex 7468153..ff594cb 100644[m
+[1m--- a/css/style.css[m
+[1m+++ b/css/style.css[m
+[36m@@ -787,7 +787,7 @@[m [mfaq.html[m
+         bottom: 50%;[m
+         transform: translateY(50%) rotate(-45deg);[m
+     }[m
+[31m-    [m
+[32m+[m
+     .nav-sp {[m
+         display: block;[m
+         position: absolute;[m
+[36m@@ -801,7 +801,6 @@[m [mfaq.html[m
+         align-items: center;[m
+         padding: 25px;[m
+         width: 80%;[m
+[31m-        height: 100%;[m
+         background: #343434;[m
+         border: 2px solid #00ff88;[m
+         border-radius: 15px;[m

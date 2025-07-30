@@ -787,7 +787,7 @@ faq.html
         bottom: 50%;
         transform: translateY(50%) rotate(-45deg);
     }
-    
+
     .nav-sp {
         display: block;
         position: absolute;
@@ -801,7 +801,6 @@ faq.html
         align-items: center;
         padding: 25px;
         width: 80%;
-        height: 100%;
         background: #343434;
         border: 2px solid #00ff88;
         border-radius: 15px;
