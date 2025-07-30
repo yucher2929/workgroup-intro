@@ -537,7 +537,6 @@ index.html
     width: 100%;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    
 }
 
 .scroll-animate {
@@ -690,15 +689,15 @@ svg {
 }
 
 .avatars {
-    position: absolute;         
-    top: 19%;                   
+    position: absolute;
+    top: 19%;
     left: 9%;
     width: 82%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
-    z-index: 10;               
+    z-index: 10;
 }
 
 .drink__avatar {
@@ -756,105 +755,183 @@ svg {
 faq.html
 ===================================== */
 /* 仮設定 */
-/* #faq */
-
-.faq_content {
+.faq__content {
     width: 100%;
     background-color: #ffffff;
     border-radius: 1.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
 }
 
 #faq .section-title {
     margin-bottom: 20px;
 }
 
-
-.faq_item--text {
-    border-block: 1px solid #9E9E9E;
-    padding: 60px 20px;
-    font-size: 2rem;
-    font-weight: bold;
+.faq__item {
+    border-bottom: 1px solid #eee;
 }
 
-.faq_item--text span {
-    display: inline-block;
-    padding-right: 20px;
+.faq__item:last-child {
+    border-bottom: none;
 }
 
-/* 質問のテキスト */
-.faq_item--q {
+/* --- 質問部分 --- */
+.faq__item--question {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 25px;
+    border: 1px solid;
+    color: #000;
+    background-color: #ffffff;
     cursor: pointer;
     position: relative;
-    padding-right: 30px;
-    transition: transform 1.0s ease, background-color 1.0s ease;
-    border-block: 1px solid #9E9E9E;
-    transition-duration: 0.2s;
+    transition: background-color 0.3s ease;
 }
 
-.faq_item--q:hover {
+.faq__item--question:hover {
     background-color: #99FF99;
-    transition: transform 1.0s ease, background-color 1.0s ease;
-    transition-duration: 0.2s;
 }
 
-.faq_item--q::after {
+.faq__item--question::before {
+    content: "Q.";
+    color: #2589d0;
+    margin-right: 1.5rem;
+}
+
+.faq__item--question .q-text {
+    flex-grow: 1;
+    /* 残りのスペースを埋める */
+}
+
+.faq__item--question::after {
     content: '+';
+    font-size: 2rem;
+    color: #2589d0;
+    font-weight: bold;
+    transition: transform 0.3s ease;
     position: absolute;
     right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease;
-    font-size: 2rem;
 }
 
-.faq_item--q.active::after {
+/* openクラスが付いた時のアイコン回転 */
+.faq__item--question.open::after {
     content: '-';
+    transform: rotate(360deg);
+    transition: transform 0.3s;
 }
 
-/* 回答のテキスト */
-.faq_item--a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out ,padding 0.5s ease-in-out;
-    padding-left: 2%;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-left: 2px solid #eee;
-    background-color: #ffe5ff;
+.faq__item--question.open {
+    background-color: #99FF99;
 }
 
-
-
-
-
-/* .faq_item--a.open {
-    padding-top: 20px;
+/* --- 回答部分 --- */
+.faq__item--answer {
+    display: none;
+    /* 初期状態は非表示 */
+    background-color: #fef4f4;
+    line-height: 1.6;
+    color: #333;
+    position: relative;
+    /* 三角形のために追加 */
+    border-radius: 25px;
+    margin-top: 15px;
+    padding-right: 20px;
     padding-bottom: 20px;
-} *
+    border: 2px solid #2589d0;
+}
 
-.faq_item--a img {
-    max-width: 70%;
-    height: auto;
-    display: block;
-    margin-top: 10px;
+.faq__item--answer::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 40px;
+    /* お好みで位置調整 */
+    width: 20px;
+    height: 15px;
+    background: #2589d0;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.faq__item--answer::after {
+    content: "";
+    position: absolute;
+    top: -13px;
+    left: 40px;
+    width: 20px;
+    height: 15px;
+    background: #ffffff;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 
-/* .faq_inquiry__form お問い合わせ*/
-.faq_inquiry__form {
+.faq__answer--content {
+    display: flex;
+    align-items: flex-start;
+    /* 上揃え */
+    gap: 20px;
+    /* 要素間の隙間 */
+    border-radius: 25px;
+}
+
+.faq__answer--content::before {
+    content: "A.";
+    color: #2589d0;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 1.5rem;
+}
+
+.faq__answer--content .answer--main {
+    flex-grow: 1;
+    /* 残りのスペースを埋める */
+}
+
+.answer--text {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+/* テキストと画像が横並びになる部分 */
+.answer--main--flex {
+    display: flex;
+    align-items: flex-start;
+    /* 上揃え */
+    gap: 10px;
+    /* テキストと画像の隙間 */
+}
+
+.answer--main--flex .answer--text {
+    flex: 1;
+    /* 利用可能なスペースを占める */
+    min-width: 0;
+    /* Flexアイテムが縮小できるようにする */
+}
+
+.answer--main--flex .answer--media--content {
+    flex: 0 0 40%;
+    /* 画像コンテナの幅を40%に固定 */
+    margin-top: 30px;
+}
+
+.answer--media--content img {
+    border-radius: 0.5rem;
+}
+
+/* .faq__inquiry--form お問い合わせ*/
+.faq__inquiry--form {
     background-color: #fef4f4;
     margin: 20px auto 80px;
     padding-bottom: 30px;
+    border-radius: 5%;
 }
 
-.faq_inquiry__title {
+.faq__inquiry--title {
     text-align: center;
     padding: 20px 0;
 }
 
-.form_item {
+.form__item {
     border-top: 1px solid #ddd;
     padding: 25px 14px;
     display: flex;
@@ -864,11 +941,11 @@ faq.html
     width: 100%;
 }
 
-.form_item:last-child {
+.form__item:last-child {
     border-bottom: 1px solid #ddd;
 }
 
-.form_item-label {
+.form__item--label {
     width: 100%;
     letter-spacing: 0.5rem;
     font-weight: bold;
@@ -878,7 +955,7 @@ faq.html
     margin-bottom: 5px;
 }
 
-.form_item-label--required {
+.form__item--label--required {
     border-radius: 6px;
     color: #ffffff;
     background-color: #00ff00;
@@ -888,7 +965,7 @@ faq.html
     margin-right: 1em;
 }
 
-.form_item-input {
+.form__item--input {
     border: 1px solid #ddd;
     border-radius: 6px;
     margin-left: 1em;
@@ -899,7 +976,7 @@ faq.html
     font-size: 18px;
 }
 
-.form_item-textarea {
+.form__item--textarea {
     margin-left: 1em;
     padding: 1em;
     border-radius: 6px;
@@ -910,7 +987,7 @@ faq.html
     flex: 1;
 }
 
-.form-btn {
+.form--btn {
     border: 1px solid;
     margin: 32px auto;
     padding: 15px;
@@ -921,43 +998,17 @@ faq.html
     font-size: 20px;
 }
 
-/* #entry */
-#entry {
-    padding-bottom: 50px;
-}
-
-.entry_link {
-    display: block;
-    text-align: center;
-    margin-block: 50px;
-}
-
-.entry_link a {
-    background-color: #EAFFF4;
-    border-radius: 5px;
-    padding: 10px 30px;
-    font-weight: bold;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.entry_link a:hover {
-    background-color: #99FF99;
-}
-
-
-
-
 /* responsive -----------------------------------*/
 @media(max-width:768px) {
+
     /* =================================
     ハンバーガーメニュー
-    ===================================== */    
+    ===================================== */
     header {
         background-color: transparent;
         top: 0;
     }
-    
+
     .nav-pc {
         display: none;
     }
@@ -997,19 +1048,19 @@ faq.html
     .hamburger span:nth-of-type(1) {
         top: 25%;
     }
-    
+
     .hamburger span:nth-of-type(2) {
         top: 50%;
         transform: translateY(-50%);
     }
-    
+
     .hamburger span:nth-of-type(3) {
         bottom: 25%;
     }
 
     .hamburger.active span:nth-of-type(1) {
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
     }
 
     .hamburger.active span:nth-of-type(2) {
@@ -1042,7 +1093,8 @@ faq.html
 
     .nav-sp.active {
         opacity: 1;
-        transform: translate(-50%, -50%); /* 中央に戻す */
+        transform: translate(-50%, -50%);
+        /* 中央に戻す */
         pointer-events: auto;
     }
 
@@ -1058,7 +1110,7 @@ faq.html
         background-color: #EAFFF4;
         box-shadow: 3px 3px 3px 1px #454545b7;
         transition: 0.3s ease;
-    }  
+    }
 
     .nav-sp a {
         display: block;
@@ -1085,7 +1137,7 @@ faq.html
         width: 100%;
         margin: 60px 0 30px 0;
     }
-    
+
     .section-title-rotate .section-title {
         transform: rotate(0deg);
         left: 0;
@@ -1111,7 +1163,8 @@ faq.html
         flex-direction: column;
     }
 
-    .about__left, .about__right {
+    .about__left,
+    .about__right {
         width: 100%;
     }
 
@@ -1151,7 +1204,7 @@ faq.html
         height: 100%;
     }
 
-    
+
     /* =================================
     Event
     ===================================== */
@@ -1160,6 +1213,7 @@ faq.html
     }
 
     .event__sub-title {
+        max-width: 100%;
         max-width: 100%;
     }
 
@@ -1181,6 +1235,13 @@ faq.html
 
     .hackathon__img{
         padding-bottom: 35px;
+    }
+    /* FAQ */
+    .answer--main--flex {
+        flex-direction: column;
+        /* 上揃え */
+        gap: 0;
+        /* テキストと画像の隙間 */
     }
 }
 

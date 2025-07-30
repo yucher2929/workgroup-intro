@@ -10,38 +10,36 @@ ScrollTrigger.create({
   scrub: true,
   pin: ".panel",
   // markers: true,
-  onUpdate: self => {
+  onUpdate: (self) => {
     const progress = self.progress;
     const cards = document.querySelectorAll(".card-inner");
 
     if (progress > 0.1) {
-      cards.forEach(cardInner => {
+      cards.forEach((cardInner) => {
         cardInner.classList.add("flip");
         cardInner.parentElement.classList.add("no-border");
-        
       });
       panel.classList.add("no-hover"); // ← ここで1回だけ付ける！
       panel.classList.add("no-gap");
     } else {
-      cards.forEach(cardInner => {
+      cards.forEach((cardInner) => {
         cardInner.classList.remove("flip");
         cardInner.parentElement.classList.remove("no-border");
       });
       panel.classList.remove("no-hover"); // ← ここも！
       panel.classList.remove("no-gap");
     }
-  }
+  },
 });
-
 
 //  ----------------------------------------------------
 //  aタグのスムーススクロール
 //  ----------------------------------------------------
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
     });
   });
 });
@@ -49,9 +47,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 //  ----------------------------------------------------
 //  ハンバーガーメニュー
 //  ----------------------------------------------------
-document.querySelector('.hamburger').addEventListener('click', function () {
-  this.classList.toggle('active');
-  document.querySelector('.nav-sp').classList.toggle('active');
+document.querySelector(".hamburger").addEventListener("click", function () {
+  this.classList.toggle("active");
+  document.querySelector(".nav-sp").classList.toggle("active");
 });
 
 //  ----------------------------------------------------
@@ -123,8 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupScrollAnimation() {
   // PC用のリストとSP用のリスト要素を取得
-  const pcList = document.querySelector('.scroll-animate');
-  const spList = document.querySelector('.scroll-animate-sp');
+  const pcList = document.querySelector(".scroll-animate");
+  const spList = document.querySelector(".scroll-animate-sp");
 
   // どちらかの要素が存在しない場合は処理しない
   if (!pcList || !spList) return;
@@ -132,9 +130,9 @@ function setupScrollAnimation() {
   // 画面幅が768px以下（スマートフォン）の場合
   if (window.innerWidth <= 768) {
     // PC用リストは非表示
-    pcList.style.display = 'none';
+    pcList.style.display = "none";
     // SP用リストは表示（横並び用）
-    spList.style.display = 'flex';
+    spList.style.display = "flex";
 
     // クローンされていない場合（初回のみ処理）
     if (!spList.dataset.cloned) {
@@ -142,74 +140,33 @@ function setupScrollAnimation() {
       items.forEach((item) => {
         spList.appendChild(item.cloneNode(true));
       });
-      spList.dataset.cloned = 'true';
+      spList.dataset.cloned = "true";
     }
   } else {
     // SP用リストは非表示
-    spList.style.display = 'none';
+    spList.style.display = "none";
     // PC用リストは表示
-    pcList.style.display = 'flex';
+    pcList.style.display = "flex";
   }
 }
 
 // ページ読み込み時に実行
-window.addEventListener('DOMContentLoaded', setupScrollAnimation);
+window.addEventListener("DOMContentLoaded", setupScrollAnimation);
 // リサイズ時にも実行
-window.addEventListener('resize', setupScrollAnimation);
-
-
-// //  ----------------------------------------------------
-// //  FAQのQ.をクリックしたら、A.を表示する
-// //  ----------------------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  // すべてのQ要素（質問部分）を取得します
-  const faqQuestions = document.querySelectorAll(".faq_item--q");
-
-  faqQuestions.forEach((question) => {
-    question.addEventListener("click", function () {
-      const faqItem = this.closest(".faq_item");
-      const answer = faqItem.querySelector(".faq_item--a");
-
-      // 現在開いているすべての回答を閉じる処理
-      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
-        const otherQuestion = otherAnswer.previousElementSibling;
-        if (otherAnswer !== answer) {
-          otherAnswer.style.maxHeight = null;
-          otherAnswer.classList.remove("open");
-          if (otherQuestion) {
-            otherQuestion.classList.remove("active");
-          }
-        }
-      });
-
-      // クリックされた回答を開閉する処理
-      if (answer.classList.contains("open")) {
-        // すでに開いている場合は閉じる
-        answer.style.maxHeight = null;
-        answer.classList.remove("open");
-        this.classList.remove("active");
-      } else {
-        // 開いていない場合は開く
-        answer.classList.add("open");
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        this.classList.add("active");
-      }
-    });
-  });
-});
+window.addEventListener("resize", setupScrollAnimation);
 
 //  ----------------------------------------------------
 //  EVENT lineアニメーション
 //  ----------------------------------------------------
 window.addEventListener("DOMContentLoaded", () => {
-  const boxes = document.querySelectorAll('.boxPath');
+  const boxes = document.querySelectorAll(".boxPath");
   const step = 4;
 
-  boxes.forEach(box => {
+  boxes.forEach((box) => {
     const totalLength = box.getTotalLength();
 
     box.style.strokeDasharray = totalLength;
-    box.style.strokeDashoffset = 0;  // 最初は全部見えてる状態
+    box.style.strokeDashoffset = 0; // 最初は全部見えてる状態
 
     let offset = 0;
 
@@ -229,21 +186,20 @@ window.addEventListener("DOMContentLoaded", () => {
 //  ----------------------------------------------------
 //  EVENT iconアニメーション
 //  ----------------------------------------------------
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
   setTimeout(function () {
     // 表示したい3つのクラス名を配列にまとめる
-    const classNames = ['seminar__img', 'ask-space__img', 'beginner__img'];
+    const classNames = ["seminar__img", "ask-space__img", "beginner__img"];
 
-    classNames.forEach(className => {
+    classNames.forEach((className) => {
       // それぞれのクラスの要素を全部取得
       const elements = document.querySelectorAll(`.${className}`);
-      elements.forEach(el => {
-        el.style.opacity = '1'; // 表示に変更
+      elements.forEach((el) => {
+        el.style.opacity = "1"; // 表示に変更
       });
     });
   }, 3000);
 });
-
 
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 avatar表示
@@ -298,46 +254,26 @@ $(function () {
   });
 });
 
-
 // //  ----------------------------------------------------
 // //  FAQのQ.をクリックしたら、A.を表示する
 // //  ----------------------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  // すべてのQ要素（質問部分）を取得します
-  const faqQuestions = document.querySelectorAll(".faq_item--q");
+$(function () {
+  /* クリックイベントを設定 */
+  $(".faq__item--question").on("click", function () {
+    const $clickedQuestion = $(this);
+    const $parentItem = $clickedQuestion.closest(".faq__item");
+    const $answer = $parentItem.find(".faq__item--answer");
 
-  faqQuestions.forEach((question) => {
-    question.addEventListener("click", function () {
-      const faqItem = this.closest(".faq_item");
-      const answer = faqItem.querySelector(".faq_item--a");
+    // 他の開いているアコーディオンを閉じる
+    $(".faq__item")
+      .not($parentItem)
+      .each(function () {
+        $(this).find(".faq__item--answer").slideUp(500);
+        $(this).find(".faq__item--question").removeClass("open");
+      });
 
-      // 現在開いているすべての回答を閉じる処理
-      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
-        const otherQuestion = otherAnswer.previousElementSibling;
-        if (otherAnswer !== answer) {
-          otherAnswer.style.maxHeight = null;
-          otherAnswer.classList.remove("open");
-          if (otherQuestion) {
-            otherQuestion.classList.remove("active");
-          }  
-        }  
-      });  
-
-      // クリックされた回答を開閉する処理
-      if (answer.classList.contains("open")) {
-        // すでに開いている場合は閉じる
-        answer.style.maxHeight = null;
-        answer.classList.remove("open");
-        this.classList.remove("active");
-      } else {
-        // 開いていない場合は開く
-        answer.classList.add("open");
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        this.classList.add("active");
-      }  
-    });  
-  });  
-});  
-
-
-
+    // クリックされたアコーディオンを開閉
+    $answer.slideToggle(500);
+    $clickedQuestion.toggleClass("open");
+  });
+});
