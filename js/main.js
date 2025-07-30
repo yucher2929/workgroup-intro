@@ -111,7 +111,6 @@ window.addEventListener("load", () => {
 });
 
 
-
 //  ----------------------------------------------------
 //  ハンバーガーメニュー
 //  ----------------------------------------------------
@@ -188,53 +187,84 @@ document.addEventListener("DOMContentLoaded", () => {
 //  ----------------------------------------------------
 //  ABOUTページの画像スクロール
 //  ----------------------------------------------------
-window.addEventListener("load", () => {
-  const wrapper = document.querySelector(".about__right");
-  const list = wrapper.querySelector(".scroll-animate");
 
-  // クローンを作成
-  const clone = list.cloneNode(true);
-  wrapper.appendChild(clone);
+function setupScrollAnimation() {
+  // PC用のリストとSP用のリスト要素を取得
+  const pcList = document.querySelector('.scroll-animate');
+  const spList = document.querySelector('.scroll-animate-sp');
+  
+  // どちらかの要素が存在しない場合は処理しない
+  if (!pcList || !spList) return;
 
-  // 画面幅によって縦 or 横スクロールを切り替え
-  const isMobile = window.innerWidth <= 768;
+  // 画面幅が768px以下（スマートフォン）の場合
+  if (window.innerWidth <= 768) {
+    // PC用リストは非表示
+    pcList.style.display = 'none';
+    // SP用リストは表示（横並び用）
+    spList.style.display = 'flex';
 
-  if (isMobile) {
-    // 横スクロールアニメーション（SP）
-    const listWidth = list.scrollWidth;
-    clone.style.left = listWidth + "px";
+    // クローンされていない場合（初回のみ処理）
+    if (!spList.dataset.cloned) {
+      const items = Array.from(spList.children);
+      items.forEach((item) => {
+        spList.appendChild(item.cloneNode(true));
+      });
+      spList.dataset.cloned = 'true';
+    }
+  } else {
+    // SP用リストは非表示
+    spList.style.display = 'none';
+    // PC用リストは表示
+    pcList.style.display = 'flex';
+  }
+}
 
-    const lists = wrapper.querySelectorAll(".scroll-animate");
-    gsap.set(lists, { y: 0, x: 0 });
+// ページ読み込み時に実行
+window.addEventListener('DOMContentLoaded', setupScrollAnimation);
+// リサイズ時にも実行
+window.addEventListener('resize', setupScrollAnimation);
 
-    gsap.to(lists, {
-      x: `-=${listWidth}`,
-      duration: 90,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => parseFloat(x) % listWidth)
+
+// //  ----------------------------------------------------
+// //  FAQのQ.をクリックしたら、A.を表示する
+// //  ----------------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  // すべてのQ要素（質問部分）を取得します
+  const faqQuestions = document.querySelectorAll(".faq_item--q");
+
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", function () {
+      const faqItem = this.closest(".faq_item");
+      const answer = faqItem.querySelector(".faq_item--a");
+
+      // 現在開いているすべての回答を閉じる処理
+      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
+        const otherQuestion = otherAnswer.previousElementSibling;
+        if (otherAnswer !== answer) {
+          otherAnswer.style.maxHeight = null;
+          otherAnswer.classList.remove("open");
+          if (otherQuestion) {
+            otherQuestion.classList.remove("active");
+          }
+        }
+      });
+
+      // クリックされた回答を開閉する処理
+      if (answer.classList.contains("open")) {
+        // すでに開いている場合は閉じる
+        answer.style.maxHeight = null;
+        answer.classList.remove("open");
+        this.classList.remove("active");
+      } else {
+        // 開いていない場合は開く
+        answer.classList.add("open");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        this.classList.add("active");
       }
     });
-  } else {
-    // 縦スクロールアニメーション（PC）
-    const listHeight = list.offsetHeight;
-    clone.style.top = listHeight + "px";
+  });
+});
 
-    const lists = wrapper.querySelectorAll(".scroll-animate");
-    gsap.set(lists, { y: 0, x: 0 });
-
-    gsap.to(lists, {
-      y: `-=${listHeight}`,
-      duration: 45,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        y: gsap.utils.unitize((y) => parseFloat(y) % listHeight)
-      }  
-    });  
-  }  
-});  
 
 //  ----------------------------------------------------
 //  EVENT lineアニメーション
