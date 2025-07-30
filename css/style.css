@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 /* 共通 -----------------------------------------*/
 body {
     font-family: "Barlow Condensed", sans-serif;
@@ -99,14 +101,14 @@ header {
     transition: height 0.3s ease;
 }
 
-header nav ul {
+.michroma-regular {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
     max-width: 1040px;
 }
 
-header nav ul li {
+.michroma-regular li {
     width: 19%;
     height: 50px;
     text-align: center;
@@ -115,7 +117,7 @@ header nav ul li {
     transition: 0.3s ease;
 }
 
-header nav ul li a {
+.michroma-regular li a {
     display: block;
     font-size: 22px;
     font-weight: 600;
@@ -123,7 +125,7 @@ header nav ul li a {
     letter-spacing: 0.15em;
 }
 
-header nav ul li a:hover {
+.michroma-regular li a:hover {
     background-color: #99FF99;
 }
 
@@ -151,24 +153,230 @@ footer {
 /* =================================
 index.html
 ===================================== */
-/* 仮設定 */
-/* .mainvisual {
-    height: 100vh;
-    border: 3px solid;
-} */
-
 #metalifeCanvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  z-index: 5;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: relative; 
+    z-index: 5;
 }
 
-.about__top {
+/* metalifeCanvas */
+.panel-wrapper {
+    height: 200vh;
+}
+
+.panel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5%;
+    transition: gap 0.8s ease;
+    
+    width: 100%;
     height: 100vh;
+    background-color: #000;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.panel.no-gap {
+    gap: 0;
+    background-color: #ededed;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card, .card-inner {
+    transition: transform 1s ease;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; /* 子要素を3Dで保つ */
+}
+
+.card:hover .card-inner {
+    transform: rotateX(360deg); 
+}
+
+.card-inner.flip {
+    transform: rotateX(180deg); 
+}
+
+.card-inner.flip:hover {
+    transform: rotateX(180deg) !important;
+}
+
+.card-inner.animate-flip {
+    transition: transform 2s ease;
+    transform: rotateX(0deg);
+}
+
+.front, .back {
+    position: absolute;    
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 裏面非表示設定 */
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card.no-border .front {
+    border: none;
+    border-radius: 0;
+}
+
+.card.no-border .back {
+    border: none;
+    column-gap: 0;
+    row-gap: 0;
+    border-radius: 0;
+}
+
+.front {
+    background-color: #333;
+    align-items: center;
+    overflow: hidden;
+}
+
+.front img {
+    position: absolute;
+    width: 500%;
+    height: 500%;
+}
+
+.back {
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    background-color: #EDEDED;
+    text-align: center;
+    overflow: hidden;
+    transform: rotateX(180deg); /* 裏側は180度回転 */
+}
+
+
+.back-inner {
+    position: absolute;
+    width: 500%;
+    height: 500%;
+    background-color: #EDEDED;
+    text-align: center;
+}
+
+.back-inner p {
+    position: absolute;
+    top: 255px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1000px;
+    color: #111;
+    font-size: 45px;
+    z-index: 2;
+    text-align: center;
+}
+
+.back-inner img {
+    max-width: 800px;
+    height: auto;
+    margin-top: 400px;
+    top: 1000px;
+    object-fit: cover; /* なくてもOK、好みで */
+}
+
+
+/* front card potsition */
+/* 1行目 */
+.card1 img {top: 0;  left: 0;}
+.card2 img {top: 0;  left: -97%;}
+.card3 img {top: 0;  left: -199%;}
+.card4 img {top: 0;  left: -303%;}
+.card5 img {top: 0;  left: -398%;}
+
+/* 2行目 */
+.card6 img {top: -99%;  left: 0;}
+.card7 img {top: -99%;  left: -97%;}
+.card8 img {top: -99%;  left: -199%;}
+.card9 img {top: -99%;  left: -303%;}
+.card10 img {top: -99%;  left: -398%;}
+
+/* 3行目 */
+.card11 img {top: -200%;  left: 0;}
+.card12 img {top: -200%;  left: -97%;}
+.card13 img {top: -200%;  left: -199%;}
+.card14 img {top: -200%;  left: -303%;}
+.card15 img {top: -200%;  left: -398%;}
+
+/* 4行目 */
+.card16 img {top: -302%;  left: 0;}
+.card17 img {top: -302%;  left: -97%;}
+.card18 img {top: -302%;  left: -199%;}
+.card19 img {top: -302%;  left: -303%;}
+.card20 img {top: -302%;  left: -398%;}
+
+/* 5行目 */
+.card21 img {top: -400%;  left: 0;}
+.card22 img {top: -400%;  left: -97%;}
+.card23 img {top: -400%;  left: -199%;}
+.card24 img {top: -400%;  left: -303%;}
+.card25 img {top: -400%;  left: -398%;}
+
+
+/* .back card potsition*/
+/* 1行目 */
+.card1  .back-inner { top:   0%;     left:    0%; }
+.card2  .back-inner { top:   0%;     left: -100%; }
+.card3  .back-inner { top:   0%;     left: -200%; }
+.card4  .back-inner { top:   0%;     left: -300%; }
+.card5  .back-inner { top:   0%;     left: -400%; }
+
+/* 2行目 */
+.card6  .back-inner { top: -100%;    left:    0%; }
+.card7  .back-inner { top: -100%;    left: -100%; }
+.card8  .back-inner { top: -100%;    left: -200%; }
+.card9  .back-inner { top: -100%;    left: -300%; }
+.card10 .back-inner { top: -100%;    left: -400%; }
+
+/* 3行目 */
+.card11 .back-inner { top: -200%;    left:    0%; }
+.card12 .back-inner { top: -200%;    left: -100%; }
+.card13 .back-inner { top: -200%;    left: -200%; }
+.card14 .back-inner { top: -200%;    left: -300%; }
+.card15 .back-inner { top: -200%;    left: -400%; }
+
+/* 4行目 */
+.card16 .back-inner { top: -300%;    left:    0%; }
+.card17 .back-inner { top: -300%;    left: -100%; }
+.card18 .back-inner { top: -300%;    left: -200%; }
+.card19 .back-inner { top: -300%;    left: -300%; }
+.card20 .back-inner { top: -300%;    left: -400%; }
+
+/* 5行目 */
+.card21 .back-inner { top: -400%;    left:    0%; }
+.card22 .back-inner { top: -400%;    left: -100%; }
+.card23 .back-inner { top: -400%;    left: -200%; }
+.card24 .back-inner { top: -400%;    left: -300%; }
+.card25 .back-inner { top: -400%;    left: -400%; }
+
+
+
+.about__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100vh;
+    margin-top: 100vh;
 }
 
 .section-title-rotate {
@@ -357,7 +565,9 @@ event.html
 /* ページ内共通 */
 .event__section {
     position: relative;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
+    margin-bottom: 70px;
+
 }
 
 .event__sub-title {
@@ -382,12 +592,15 @@ event.html
     width: 32%;
     margin-bottom: 40px;
     text-align: center;
+    background-color: #dfdede;
+    box-shadow: 1px 1px 1px 1px #454545b7;
 }
 
 .icon-wrapper {
     position: absolute;
     top: 0;
     width: 100%;
+    padding-top: 20px;
     text-align: center;
 }
 
@@ -408,14 +621,17 @@ event.html
 
 .virtual-drink-meetup__description,
 .hackathon__description {
-    width: 46%;
+    width: 60%;
+    line-height: 60px;
+    /* background-color: #dfdede;
+    box-shadow: 1px 1px 1px 1px #454545b7; */
 
 }
 
 .virtual-drink-meetup__imgs,
 .hackathon__img {
     display: block;
-    width: 40%;
+    width: 30%;
 }
 
 .section__label {
@@ -435,22 +651,24 @@ svg {
     left: 0;
 }
 
+
 /* 01 作業会定例 */
-/* 作業会 セミナー */
+    /* 作業会 セミナー */
 .seminar__img {
     width: 100%;
 }
 
-/* 作業会 質問部屋 */
-.work-session-regular__ask-space {
+    /* 作業会 質問部屋 */
+/* .work-session-regular__ask-space {
+    background-color: #dfdede;
     margin-top: 60px;
-}
+} */
 
 .ask-space__img {
     width: 100%;
 }
 
-/* 作業会作業会 初心者交流会  */
+    /* 作業会作業会 初心者交流会  */
 .beginner__img {
     width: auto;
     height: 90%;
@@ -458,9 +676,12 @@ svg {
 }
 
 /* 02 オンライン飲み会 */
-.virtual-drink-meetup__items {
+.virtual-drink-meetup {
+    padding-bottom: 50px;
+}
+
+.virtual-drink-meetup__imgs {
     position: relative;
-    width: 100%;
 }
 
 .monitor {
@@ -470,11 +691,13 @@ svg {
 
 .avatars {
     position: absolute;         
-    top: 20%;                   
-    left: 68.5%;
+    top: 19%;                   
+    left: 9%;
+    width: 82%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
     z-index: 10;               
 }
 
@@ -493,10 +716,10 @@ svg {
 
 .beer {
     position: absolute;
-    top: 40%;
-    left: 39%;
+    top:200px;
+    left: -40%;
     display: block;
-    width: 25%;
+    width: 60%;
     transform: rotate(18deg);
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -508,19 +731,24 @@ svg {
 }
 
 
-/* ハッカソン */
-.hackathon__items {
+/*03  ハッカソン */
+.hackathon {
+    padding-bottom: 50px;
+}
+
+.hackathon__img {
     position: relative;
+    width: 34%;
+    margin-top: 18px;
 }
 
 .typewriter {
     position: absolute;
-    top: 40px;
-    left: px;
-    width: 190px;
-    background-color: black;
+    top: 6%;
+    left: 5%;
+    width: 55%;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 
@@ -597,6 +825,10 @@ faq.html
     background-color: #ffe5ff;
 }
 
+
+
+
+
 /* .faq_item--a.open {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -608,6 +840,7 @@ faq.html
     display: block;
     margin-top: 10px;
 }
+
 
 /* .faq_inquiry__form お問い合わせ*/
 .faq_inquiry__form {
@@ -924,10 +1157,10 @@ faq.html
     }
 
     .event__sub-title {
-    max-width: 100%;
+        max-width: 100%;
     }
 
-    .work-session-regular__item,
+    .work-session-regular__item
     .virtual-drink-meetup__description,
     .hackathon__description {
         width: 100%;
@@ -935,24 +1168,17 @@ faq.html
 
     .virtual-drink-meetup__imgs,
     .hackathon__img {
-        width: 80%;
+        width: 40%;
         margin: 0 auto;
     }
-
 
     .event__item-list li {
         padding-bottom: 30px;
     }
 
-    .seminar__icon {
-        left: 0;
+    .hackathon__img{
+        padding-bottom: 35px;
     }
-
-    .beginner__icon {
-        left: 0;
-    }
-
-
 }
 
 

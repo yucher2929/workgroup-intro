@@ -1,3 +1,37 @@
+//  ----------------------------------------------------
+//  top animation
+//  ----------------------------------------------------
+const panel = document.querySelector(".panel");
+
+ScrollTrigger.create({
+  trigger: ".panel-wrapper",
+  start: "top top",
+  end: "+=600",
+  scrub: true,
+  pin: ".panel",
+  // markers: true,
+  onUpdate: self => {
+    const progress = self.progress;
+    const cards = document.querySelectorAll(".card-inner");
+
+    if (progress > 0.1) {
+      cards.forEach(cardInner => {
+        cardInner.classList.add("flip");
+        cardInner.parentElement.classList.add("no-border");
+        
+      });
+      panel.classList.add("no-hover"); // ← ここで1回だけ付ける！
+      panel.classList.add("no-gap");
+    } else {
+      cards.forEach(cardInner => {
+        cardInner.classList.remove("flip");
+        cardInner.parentElement.classList.remove("no-border");
+      });
+      panel.classList.remove("no-hover"); // ← ここも！
+      panel.classList.remove("no-gap");
+    }
+  }
+});
 
 
 //  ----------------------------------------------------
@@ -27,7 +61,7 @@ let pagetop = $(".header__top");
 pagetop.hide(); // 最初に画面が表示された時は、ボタンを非表示に設定
 // スクロールイベント
 $(window).scroll(function () {
-  if ($(this).scrollTop() > 750) {
+  if ($(this).scrollTop() > 1400) {
     //スクロール位置が750pxを超えた場合
     pagetop.fadeIn(); //ボタンを表示する
   } else {
@@ -221,6 +255,7 @@ window.addEventListener('load', function () {
   }, 3000);
 });
 
+
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 avatar表示
 //  ----------------------------------------------------
@@ -274,14 +309,46 @@ $(function () {
   });
 });
 
-//  ----------------------------------------------------
-//  top animation
-//  ----------------------------------------------------
-// ローディング後ロゴが出てくる
-window.addEventListener("DOMContentLoaded", () => {
-  const loader = document.querySelector(".loader__logo");
 
-  setTimeout(() => {
-    loader.style.opacity = "1";
-  }, 2500);
-});
+// //  ----------------------------------------------------
+// //  FAQのQ.をクリックしたら、A.を表示する
+// //  ----------------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  // すべてのQ要素（質問部分）を取得します
+  const faqQuestions = document.querySelectorAll(".faq_item--q");
+
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", function () {
+      const faqItem = this.closest(".faq_item");
+      const answer = faqItem.querySelector(".faq_item--a");
+
+      // 現在開いているすべての回答を閉じる処理
+      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
+        const otherQuestion = otherAnswer.previousElementSibling;
+        if (otherAnswer !== answer) {
+          otherAnswer.style.maxHeight = null;
+          otherAnswer.classList.remove("open");
+          if (otherQuestion) {
+            otherQuestion.classList.remove("active");
+          }  
+        }  
+      });  
+
+      // クリックされた回答を開閉する処理
+      if (answer.classList.contains("open")) {
+        // すでに開いている場合は閉じる
+        answer.style.maxHeight = null;
+        answer.classList.remove("open");
+        this.classList.remove("active");
+      } else {
+        // 開いていない場合は開く
+        answer.classList.add("open");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        this.classList.add("active");
+      }  
+    });  
+  });  
+});  
+
+
+
