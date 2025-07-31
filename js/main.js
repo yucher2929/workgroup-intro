@@ -156,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 //  ----------------------------------------------------
 //  ABOUTページの画像スクロール
 //  ----------------------------------------------------
@@ -201,13 +200,10 @@ function setupScrollAnimation() {
   }
 }
 
-
-
 // ページ読み込み時に実行
 window.addEventListener('DOMContentLoaded', setupScrollAnimation);
 // リサイズ時にも実行
 window.addEventListener('resize', setupScrollAnimation);
-
 
 
 //  ----------------------------------------------------
@@ -264,7 +260,6 @@ $(window).on("scroll load", function () {
     }
   });
 });
-
 
 
 //  ----------------------------------------------------
