@@ -54,7 +54,7 @@
 
 
     <main>
-        <section id="event" class="container wrapper">
+        <div id="event" class="container wrapper">
 
             <h2 class="section-title">EVENT</h2>
             
@@ -66,16 +66,6 @@
                 <div class="event__items">
                     <div class="work-session-regular__item">
                         <div class="icon-wrapper">
-                            <svg viewBox="0 0 370 260" width="100%" height="200%">
-                                <!-- labelのborderを自動的に消す -->
-                                <path class="boxPath"
-                                d="M235 120 H40 V230 H280 V238 H150"
-                                fill="none"
-                                stroke="#333"
-                                stroke-width="1.3"
-                                stroke-dasharray="620"
-                                stroke-dashoffset="0" />
-                            </svg>
                             <div class="icon">
                                 <img class="seminar__img" src="img/seminar_01.png" alt="">
                             </div>
@@ -90,16 +80,6 @@
                 
                     <div class="work-session-regular__item work-session-regular__ask-space">
                         <div class="icon-wrapper">
-                            <svg viewBox="0 0 370 260" width="100%" height="200%">
-                            <!-- labelのborderを自動的に消す -->
-                            <path class="boxPath"
-                                d="M230 100 H280 V230 H30 V150 H80 V170 H0"
-                                fill="none"
-                                stroke="#333"
-                                stroke-width="1.3"
-                                stroke-dasharray="620"
-                                stroke-dashoffset="0" />
-                            </svg>
                             <div class="ask-space__icon icon">
                                 <img class="ask-space__img" src="img/ask-space_01.png" alt="">
                             </div>
@@ -114,16 +94,6 @@
                 
                     <div class="work-session-regular__item">
                         <div class="icon-wrapper">
-                            <svg viewBox="0 0 370 260" width="100%" height="200%">
-                                <!-- labelのborderを自動的に消す -->
-                                <path class="boxPath"
-                                d="M90 40 H280 V160 H150 V170 H30 V260"
-                                fill="none"
-                                stroke="#333"
-                                stroke-width="1.3"
-                                stroke-dasharray="620"
-                                stroke-dashoffset="0" />
-                            </svg>
                             <div class="beginner__icon icon ">
                                 <img class="beginner__img" src="img/beginner_01.png" alt="">
                             </div>
@@ -174,13 +144,13 @@
                         </div>
                     </div>
                     <div class="hackathon__description">
-                        <p>提示された課題に取り組み、ホームページ制作を競い合います。
+                        <p>与えられた課題に沿ってホームページを制作し、その出来栄えを競います。
     チームで一つのものを作り上げる経験や、仲間のコーディングを間近で見られる機会は、独学では得られない貴重な体験です。</p>
                     </div>
                 </div>
             </section>
 
-    </section>
+    </div>
         
     </main>
     
@@ -192,7 +162,8 @@
 
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 
