@@ -199,8 +199,6 @@ function setupScrollAnimation() {
   }
 }
 
-
-
 // ページ読み込み時に実行
 window.addEventListener('DOMContentLoaded', setupScrollAnimation);
 // リサイズ時にも実行
@@ -261,6 +259,7 @@ $(window).on("scroll load", function () {
     }
   });
 });
+
 
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 beer揺れ
