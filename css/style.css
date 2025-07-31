@@ -348,7 +348,7 @@ index.html
 
 .about__list__item--link:hover {
     background-color: #343434;
-    color: #E3E3E3;
+    color: #00ff88;
 }
 
 .about__list__item--link span {
@@ -694,7 +694,7 @@ faq.html
     border-radius: 1.5rem;
     overflow: hidden;
     box-sizing: border-box;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .faq .section-title {
@@ -730,12 +730,11 @@ faq.html
 .faq__item--question::before {
     content: "Q.";
     color: #2589d0;
-    margin-right: 1.5rem;
 }
 
-.faq__item--question .q-text {
+.faq__item--question .q--text {
     flex-grow: 1;
-    /* 残りのスペースを埋める */
+    padding: 0 1.5rem;
 }
 
 .faq__item--question::after {
@@ -856,7 +855,7 @@ faq.html
 /* .faq__inquiry--form お問い合わせ*/
 .faq__inquiry--form {
     background-color: #fef4f4;
-    margin: 20px auto 80px;
+    margin: 30px auto 140px;
     padding-bottom: 30px;
     border-radius: 5%;
 }
@@ -929,6 +928,14 @@ faq.html
     color: #ffffff;
     background-color: #00ff00;
     font-size: 20px;
+}
+
+.form--btn:hover {
+    background-color: #ffffff;
+    color: #00ff00;
+    transform: scale(1.1);
+    transition: all 0.5s;
+    font-weight: bold;
 }
 
 /* responsive -----------------------------------*/

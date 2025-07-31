@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 //  ----------------------------------------------------
 //  aタグのスムーススクロール
 //  ----------------------------------------------------
@@ -82,6 +83,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
+
 //  ----------------------------------------------------
 //  ハンバーガーメニュー
 //  ----------------------------------------------------
@@ -89,6 +91,7 @@ document.querySelector(".hamburger").addEventListener("click", function () {
   this.classList.toggle("active");
   document.querySelector(".nav-sp").classList.toggle("active");
 });
+
 
 //  ----------------------------------------------------
 //  headerの表示タイミング設定
@@ -105,6 +108,7 @@ $(window).scroll(function () {
     pagetop.fadeOut(); //トップに戻るボタンを非表示にする
   }
 });
+
 
 //  ----------------------------------------------------
 //  headerからfooterの切り替え
@@ -128,6 +132,7 @@ window.addEventListener("scroll", function () {
     footer.style.opacity = "0";
   }
 });
+
 
 //  ----------------------------------------------------
 //  sub-titleのアニメーション
@@ -155,10 +160,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 //  ----------------------------------------------------
 //  ABOUTページの画像スクロール
 //  ----------------------------------------------------
-
 function setupScrollAnimation() {
   // PC用のリストとSP用のリスト要素を取得
   const pcList = document.querySelector('.scroll-animate');
@@ -233,6 +238,7 @@ window.addEventListener('DOMContentLoaded', () => {
   targets.forEach(target => observer.observe(target));
 });
 
+
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 avatar表示
 //  ----------------------------------------------------
@@ -270,6 +276,7 @@ setInterval(() => {
   $(".beer").css("transform", `rotate(${angle}deg)`);
   toggled = !toggled;
 }, 600); // 300msごとに切り替え → カクカク揺れ
+
 
 //  ----------------------------------------------------
 //  EVENT 一文字ずつ表示
@@ -360,6 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
   checkScrollPosition();
   window.addEventListener("scroll", checkScrollPosition);
 });
+
 
 // //  ----------------------------------------------------
 // //  FAQのQ.をクリックしたら、A.を表示する
