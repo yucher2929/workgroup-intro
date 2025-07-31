@@ -38,7 +38,7 @@ li {
 
 .container {
     max-width: 1040px;
-    margin: 100px auto 0;
+    margin: 0 auto;
 }
 
 .about__wrapper {
@@ -62,9 +62,9 @@ li {
 }
 
 .sub-title span {
-    font-size: 80px;
+    font-size: 1.4em;
     letter-spacing: 0.1em;
-    padding-right: 50px;
+    padding-right: 5%;
 }
 
 /* マーカーの初期状態 */
@@ -144,8 +144,9 @@ footer {
 }
 
 .footer__copy {
+    width: 100%;
     font-size: 11px;
-    line-height: 30px;
+    line-height: 20px;
     text-align: center;
 }
 
@@ -163,7 +164,7 @@ index.html
 }
 
 .panel-wrapper {
-    height: 200vh;
+    height: 100vh;
 }
 
 .panel {
@@ -191,8 +192,7 @@ index.html
     overflow: hidden;
 }
 
-.card,
-.card-inner {
+.card, .card-inner {
     transition: transform 1s ease;
 }
 
@@ -200,8 +200,7 @@ index.html
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    /* 子要素を3Dで保つ */
+    transform-style: preserve-3d; /* 子要素を3Dで保つ */
 }
 
 .card:hover .card-inner {
@@ -210,7 +209,7 @@ index.html
 
 /* no-hover が付いたら逆回転で無効化 */
 .panel.no-hover .card:hover .card-inner {
-    transform: rotateX(-180deg); 
+    transform: rotateX(-180deg);
 }
 
 .card-inner.flip {
@@ -226,17 +225,15 @@ index.html
     transform: rotateX(0deg);
 }
 
-.front,
-.back {
+.front, .back {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden;
-    /* 裏面非表示設定 */
+    backface-visibility: hidden; /* 裏面非表示設定 */
     border: 1px solid #333;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .card.no-border .front {
@@ -270,8 +267,7 @@ index.html
     background-color: #EDEDED;
     text-align: center;
     overflow: hidden;
-    transform: rotateX(180deg);
-    /* 裏側は180度回転 */
+    transform: rotateX(180deg); /* 裏側は180度回転 */
 }
 
 .back-inner {
@@ -300,8 +296,7 @@ index.html
     height: auto;
     margin-top: 400px;
     top: 1000px;
-    object-fit: cover;
-    /* なくてもOK、好みで */
+    object-fit: cover; /* なくてもOK、好みで */
 }
 
 /* -------------------------------------------------- */
@@ -465,8 +460,7 @@ index.html
     position: relative;
 }
 
-.scroll-animate,
-.scroll-animate-sp {
+.scroll-animate, .scroll-animate-sp {
     position: absolute;
     top: 0;
     left: 0;
@@ -485,13 +479,12 @@ index.html
 }
 
 @keyframes scroll-vertical {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-50%);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 
@@ -503,7 +496,6 @@ event.html
     position: relative;
     margin-bottom: 70px;
     margin-bottom: 70px;
-
 }
 
 .event__sub-title {
@@ -523,6 +515,39 @@ event.html
     justify-content: space-between;
 }
 
+.seminar__img,
+.ask-space__img,
+.beginner__img {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.virtual-drink-meetup__description,
+.hackathon__description {
+    width: 60%;
+    line-height: 60px;
+}
+
+.virtual-drink-meetup__imgs,
+.hackathon__img {
+    display: block;
+    width: 30%;
+}
+
+.section__label {
+    padding: 130px 0 50px;
+    font-size: 35px;
+}
+
+.event__item-list li {
+    display: block;
+    position: relative;
+    padding-bottom: 25px;
+}
+
+/* 01 作業会定例 */
+/* 作業会 セミナー */
 .work-session-regular__item {
     position: relative;
     width: 32%;
@@ -546,45 +571,6 @@ event.html
     width: 100px;
     height: 100px;
     margin: 0 auto;
-}
-
-.seminar__img,
-.ask-space__img,
-.beginner__img {
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.virtual-drink-meetup__description,
-.hackathon__description {
-    width: 60%;
-    line-height: 60px;
-    /* background-color: #dfdede;
-    box-shadow: 1px 1px 1px 1px #454545b7; */
-
-}
-
-.virtual-drink-meetup__imgs,
-.hackathon__img {
-    display: block;
-    width: 30%;
-}
-
-.section__label {
-    padding: 130px 0 50px;
-    font-size: 35px;
-}
-
-.event__item-list li {
-    display: block;
-    position: relative;
-    padding-bottom: 25px;
-}
-
-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 
@@ -659,7 +645,6 @@ svg {
     transform: rotate(18deg);
     opacity: 0;
     transition: opacity 0.5s ease;
-
 }
 
 .beer.visible {
@@ -685,6 +670,15 @@ svg {
     width: 55%;
     color: #ffffff;
     font-size: 14px;
+}
+
+.typewriter p {
+    visibility: hidden;
+}
+
+.typewriter p.active {
+    visibility: visible;
+    /* アニメーション開始時に付与 */
 }
 
 
@@ -896,7 +890,7 @@ faq.html
 .form__item--label--required {
     border-radius: 6px;
     color: #ffffff;
-    background-color: #ee827c;
+    background-color: #00ff00;
     text-align: center;
     width: 50px;
     margin-right: 1em;
@@ -934,32 +928,20 @@ faq.html
     font-size: 20px;
 }
 
-/* #entry */
-#entry {
-    padding-bottom: 50px;
-}
-
-.entry_link {
-    display: block;
-    text-align: center;
-    margin-block: 50px;
-}
-
-.entry_link a {
-    background-color: #EAFFF4;
-    border-radius: 5px;
-    padding: 10px 30px;
-    font-weight: bold;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.entry_link a:hover {
-    background-color: #99FF99;
-}
-
 /* responsive -----------------------------------*/
 @media(max-width:768px) {
+    body {
+        font-size: 25px;
+    }
+
+    .section-title {
+        font-size: 100px;
+    }
+
+    .sub-title {
+        font-size: 45px;
+    }
+
 
     /* =================================
     ハンバーガーメニュー
@@ -1089,7 +1071,6 @@ faq.html
     /* =================================
     About
     ===================================== */
-
     .about__top {
         flex-direction: column;
         height: auto;
@@ -1098,12 +1079,13 @@ faq.html
     .section-title-rotate {
         width: 100%;
         margin: 60px 0 30px 0;
+        padding-left: 0;
     }
 
     .section-title-rotate .section-title {
         transform: rotate(0deg);
         left: 0;
-        font-size: 100px;
+        font-size: 80px;
     }
 
     .about__list {
@@ -1111,9 +1093,9 @@ faq.html
     }
 
     .about__list__item--link {
-        font-size: 50px;
+        font-size: 45px;
         font-weight: bold;
-        padding: 30px;
+        padding: 30px 0;
     }
 
     .about__list__item--link span {
@@ -1172,24 +1154,26 @@ faq.html
     /* =================================
     Event
     ===================================== */
+
     .event__items {
         flex-direction: column;
     }
 
-    .event__sub-title {
+    .section__label {
         max-width: 100%;
-        max-width: 100%;
+        font-size: 30px;
     }
 
     .work-session-regular__item .virtual-drink-meetup__description,
+    .work-session-regular__item,
+    .virtual-drink-meetup__description,
     .hackathon__description {
         width: 100%;
     }
 
-    .virtual-drink-meetup__imgs,
-    .hackathon__img {
-        width: 40%;
-        margin: 0 auto;
+    .virtual-drink-meetup__description,
+    .hackathon__description {
+        line-height: 50px;
     }
 
     .event__item-list li {
@@ -1197,16 +1181,14 @@ faq.html
     }
 
     .hackathon__img {
-        padding-bottom: 35px;
+    .virtual-drink-meetup__items {
+        flex-direction: column-reverse;
     }
 
-    /* =================================
-    FAQ
-    ===================================== */
-    .answer--main--flex {
-        flex-direction: column;
-        /* 上揃え */
-        gap: 0;
-        /* テキストと画像の隙間 */
+    .virtual-drink-meetup__imgs {
+        width: 40%;
+        min-width: 150px;
+        margin: 0 auto;
+        padding-bottom: 35px;
     }
 }
