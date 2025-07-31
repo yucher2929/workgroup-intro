@@ -1,51 +1,75 @@
 //  ----------------------------------------------------
 //  top animation
 //  ----------------------------------------------------
+const panel = document.querySelector(".panel");
 
-document.addEventListener("DOMContentLoaded", () => {
- const panelWrapper = document.querySelector(".panel-wrapper");
-  const panel = document.querySelector(".panel");
+// .panelクラスにカードを複製（25枚）
+for (let i = 0; i < 25; i++) {
+  const card = document.createElement('div');
+  card.className = `card card${i + 1}`;
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="front"><img src="img/top__front.png" alt="MetaLeaf"></div>
+      <div class="back">
+        <div class="back-inner">
+          <p>一人じゃできない成長を、ここで。</p>
+          <img src="img/top__back-img.png" alt="MetaLeafのアバター">
+        </div>
+      </div>
+    </div>
+  `;
+  panel.appendChild(card);
+}
 
-  console.log("panelWrapper:", panelWrapper);
-  console.log("panel:", panel);
+// 25タイルを5×5で分割表示
+const cards = document.querySelectorAll(".card");
+const cols = 5;
 
-  if (!panelWrapper || !panel) {
-    console.warn(".panel-wrapper または .panel が見つかりません");
-    return;
-  }
+cards.forEach((card, i) => {
+  const row = Math.floor(i / cols);
+  const col = i % cols;
 
-  // ScrollTriggerの処理
-  ScrollTrigger.create({
-    trigger: ".panel-wrapper",
-    start: "top top",
-    end: "+=600",
-    scrub: true,
-    pin: ".panel",
-    // markers: true,
-    onUpdate: self => {
-      const progress = self.progress;
-      const cards = document.querySelectorAll(".card-inner");
-  
-      if (progress > 0.1) {
-        cards.forEach(cardInner => {
-          cardInner.classList.add("flip");
-          cardInner.parentElement.classList.add("no-border");
-          
-        });
-        panel.classList.add("no-hover"); // ← ここで1回だけ付ける！
-        panel.classList.add("no-gap");
-      } else {
-        cards.forEach(cardInner => {
-          cardInner.classList.remove("flip");
-          cardInner.parentElement.classList.remove("no-border");
-        });
-        panel.classList.remove("no-hover"); // ← ここも！
-        panel.classList.remove("no-gap");
-      }
-    }
-  });
+  // 画像を変数に代入
+  const frontImg = card.querySelector(".front img");
+  const backInner = card.querySelector(".back-inner");
+
+  // front画像の位置設定
+  frontImg.style.top = `${-100 * row}%`;
+  frontImg.style.left = `${-100 * col}%`;
+
+  // back-inner画像の位置設定
+  backInner.style.top = `${-100 * row}%`;
+  backInner.style.left = `${-100 * col}%`;
 });
 
+ScrollTrigger.create({
+  trigger: ".panel-wrapper",
+  start: "top top",
+  end: "+=600",
+  scrub: true,
+  pin: ".panel",
+  onUpdate: self => {
+    const progress = self.progress;
+    const cards = document.querySelectorAll(".card-inner");
+
+    if (progress > 0.1) {
+      cards.forEach(cardInner => {
+        cardInner.classList.add("flip");
+        cardInner.parentElement.classList.add("no-border");
+
+      });
+      panel.classList.add("no-hover"); // スクロール時はhover無効化
+      panel.classList.add("no-gap");
+    } else {
+      cards.forEach(cardInner => {
+        cardInner.classList.remove("flip");
+        cardInner.parentElement.classList.remove("no-border");
+      });
+      panel.classList.remove("no-hover");
+      panel.classList.remove("no-gap");
+    }
+  }
+});
 
 
 //  ----------------------------------------------------
@@ -153,7 +177,7 @@ function setupScrollAnimation() {
     // SP用リストは表示（横並び用）
     spList.style.display = 'flex';
 
-    // クローンされていない場合（初回のみ処理）
+    // SP用のリストのクローンされていない場合（初回のみ処理）
     if (!spList.dataset.cloned) {
       const items = Array.from(spList.children);
       items.forEach((item) => {
@@ -166,8 +190,19 @@ function setupScrollAnimation() {
     spList.style.display = 'none';
     // PC用リストは表示
     pcList.style.display = 'flex';
+
+    // PC用のリストのクローンされていない場合
+    if (!pcList.dataset.cloned) {
+      const items = Array.from(pcList.children);
+      items.forEach((item) => {
+        pcList.appendChild(item.cloneNode(true));
+      });
+      pcList.dataset.cloned = 'true';
+    }
   }
 }
+
+
 
 // ページ読み込み時に実行
 window.addEventListener('DOMContentLoaded', setupScrollAnimation);
@@ -352,9 +387,9 @@ document.addEventListener("DOMContentLoaded", function () {
           otherAnswer.classList.remove("open");
           if (otherQuestion) {
             otherQuestion.classList.remove("active");
-          }  
-        }  
-      });  
+          }
+        }
+      });
 
       // クリックされた回答を開閉する処理
       if (answer.classList.contains("open")) {
@@ -367,10 +402,10 @@ document.addEventListener("DOMContentLoaded", function () {
         answer.classList.add("open");
         answer.style.maxHeight = answer.scrollHeight + "px";
         this.classList.add("active");
-      }  
-    });  
-  });  
-});  
+      }
+    });
+  });
+});
 
 
 
