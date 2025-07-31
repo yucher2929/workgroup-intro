@@ -70,15 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 //  ----------------------------------------------------
 //  aタグのスムーススクロール
 //  ----------------------------------------------------
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
     });
   });
 });
@@ -86,9 +85,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 //  ----------------------------------------------------
 //  ハンバーガーメニュー
 //  ----------------------------------------------------
-document.querySelector('.hamburger').addEventListener('click', function () {
-  this.classList.toggle('active');
-  document.querySelector('.nav-sp').classList.toggle('active');
+document.querySelector(".hamburger").addEventListener("click", function () {
+  this.classList.toggle("active");
+  document.querySelector(".nav-sp").classList.toggle("active");
 });
 
 //  ----------------------------------------------------
@@ -156,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 //  ----------------------------------------------------
 //  ABOUTページの画像スクロール
 //  ----------------------------------------------------
@@ -207,7 +205,6 @@ function setupScrollAnimation() {
 window.addEventListener('DOMContentLoaded', setupScrollAnimation);
 // リサイズ時にも実行
 window.addEventListener('resize', setupScrollAnimation);
-
 
 
 //  ----------------------------------------------------
@@ -265,8 +262,6 @@ $(window).on("scroll load", function () {
   });
 });
 
-
-
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 beer揺れ
 //  ----------------------------------------------------
@@ -276,7 +271,6 @@ setInterval(() => {
   $(".beer").css("transform", `rotate(${angle}deg)`);
   toggled = !toggled;
 }, 600); // 300msごとに切り替え → カクカク揺れ
-
 
 //  ----------------------------------------------------
 //  EVENT 一文字ずつ表示
@@ -322,36 +316,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // アニメ開始＆繰り返しセット
   function startLoop() {
-    typewriters.forEach(elem => {
+    typewriters.forEach((elem) => {
       typeWriterEffectMulti(elem);
     });
 
     intervalId = setInterval(() => {
-      typewriters.forEach(elem => {
+      typewriters.forEach((elem) => {
         typeWriterEffectMulti(elem);
       });
     }, 9000); // 7秒ごと繰り返し
   }
 
   // IntersectionObserver監視
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (!intervalId) {
-          startLoop();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!intervalId) {
+            startLoop();
+          }
         }
-      }
-    });
-  }, { threshold: 0.5 });
+      });
+    },
+    { threshold: 0.5 }
+  );
 
-  targets.forEach(target => observer.observe(target));
+  targets.forEach((target) => observer.observe(target));
 
   // 初期ロード時やスクロール時にトリガー判定
   function checkScrollPosition() {
     const scrollY = window.scrollY || window.pageYOffset;
     const windowHeight = window.innerHeight;
 
-    targets.forEach(target => {
+    targets.forEach((target) => {
       const targetTop = target.getBoundingClientRect().top + scrollY;
       if (scrollY + windowHeight >= targetTop + target.offsetHeight * 0.5) {
         if (!intervalId) {
@@ -365,46 +362,26 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", checkScrollPosition);
 });
 
-
 // //  ----------------------------------------------------
 // //  FAQのQ.をクリックしたら、A.を表示する
 // //  ----------------------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  // すべてのQ要素（質問部分）を取得します
-  const faqQuestions = document.querySelectorAll(".faq_item--q");
+$(function () {
+  /* クリックイベントを設定 */
+  $(".faq__item--question").on("click", function () {
+    const $clickedQuestion = $(this);
+    const $parentItem = $clickedQuestion.closest(".faq__item");
+    const $answer = $parentItem.find(".faq__item--answer");
 
-  faqQuestions.forEach((question) => {
-    question.addEventListener("click", function () {
-      const faqItem = this.closest(".faq_item");
-      const answer = faqItem.querySelector(".faq_item--a");
-
-      // 現在開いているすべての回答を閉じる処理
-      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
-        const otherQuestion = otherAnswer.previousElementSibling;
-        if (otherAnswer !== answer) {
-          otherAnswer.style.maxHeight = null;
-          otherAnswer.classList.remove("open");
-          if (otherQuestion) {
-            otherQuestion.classList.remove("active");
-          }
-        }
+    // 他の開いているアコーディオンを閉じる
+    $(".faq__item")
+      .not($parentItem)
+      .each(function () {
+        $(this).find(".faq__item--answer").slideUp(500);
+        $(this).find(".faq__item--question").removeClass("open");
       });
 
-      // クリックされた回答を開閉する処理
-      if (answer.classList.contains("open")) {
-        // すでに開いている場合は閉じる
-        answer.style.maxHeight = null;
-        answer.classList.remove("open");
-        this.classList.remove("active");
-      } else {
-        // 開いていない場合は開く
-        answer.classList.add("open");
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        this.classList.add("active");
-      }
-    });
+    // クリックされたアコーディオンを開閉
+    $answer.slideToggle(500);
+    $clickedQuestion.toggleClass("open");
   });
 });
-
-
-
