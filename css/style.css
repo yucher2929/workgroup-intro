@@ -86,7 +86,6 @@ li {
 }
 
 
-
 /* 共通 header -----------------------------------*/
 
 header {
@@ -495,7 +494,6 @@ index.html
     }
 }
 
-
 /* =================================
 event.html
 ===================================== */
@@ -581,18 +579,17 @@ event.html
     margin: 0 auto;
 }
 
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* 01 作業会定例 */
 /* 作業会 セミナー */
 .seminar__img {
     width: 100%;
 }
-
-/* 作業会 質問部屋 */
-/* .work-session-regular__ask-space {
-    background-color: #dfdede;
-    margin-top: 60px;
-} */
 
 .ask-space__img {
     width: 100%;
@@ -658,7 +655,6 @@ event.html
 .beer.visible {
     opacity: 1;
 }
-
 
 /*03  ハッカソン */
 .hackathon {
