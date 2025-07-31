@@ -3,43 +3,83 @@
 //  ----------------------------------------------------
 const panel = document.querySelector(".panel");
 
+// .panelクラスにカードを複製（25枚）
+for (let i = 0; i < 25; i++) {
+  const card = document.createElement('div');
+  card.className = `card card${i + 1}`;
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="front"><img src="img/top__front.png" alt="MetaLeaf"></div>
+      <div class="back">
+        <div class="back-inner">
+          <p>一人じゃできない成長を、ここで。</p>
+          <img src="img/top__back-img.png" alt="MetaLeafのアバター">
+        </div>
+      </div>
+    </div>
+  `;
+  panel.appendChild(card);
+}
+
+// 25タイルを5×5で分割表示
+const cards = document.querySelectorAll(".card");
+const cols = 5;
+
+cards.forEach((card, i) => {
+  const row = Math.floor(i / cols);
+  const col = i % cols;
+
+  // 画像を変数に代入
+  const frontImg = card.querySelector(".front img");
+  const backInner = card.querySelector(".back-inner");
+
+  // front画像の位置設定
+  frontImg.style.top = `${-100 * row}%`;
+  frontImg.style.left = `${-100 * col}%`;
+
+  // back-inner画像の位置設定
+  backInner.style.top = `${-100 * row}%`;
+  backInner.style.left = `${-100 * col}%`;
+});
+
 ScrollTrigger.create({
   trigger: ".panel-wrapper",
   start: "top top",
   end: "+=600",
   scrub: true,
   pin: ".panel",
-  // markers: true,
-  onUpdate: (self) => {
+  onUpdate: self => {
     const progress = self.progress;
     const cards = document.querySelectorAll(".card-inner");
 
     if (progress > 0.1) {
-      cards.forEach((cardInner) => {
+      cards.forEach(cardInner => {
         cardInner.classList.add("flip");
         cardInner.parentElement.classList.add("no-border");
+
       });
-      panel.classList.add("no-hover"); // ← ここで1回だけ付ける！
+      panel.classList.add("no-hover"); // スクロール時はhover無効化
       panel.classList.add("no-gap");
     } else {
-      cards.forEach((cardInner) => {
+      cards.forEach(cardInner => {
         cardInner.classList.remove("flip");
         cardInner.parentElement.classList.remove("no-border");
       });
-      panel.classList.remove("no-hover"); // ← ここも！
+      panel.classList.remove("no-hover");
       panel.classList.remove("no-gap");
     }
-  },
+  }
 });
+
 
 //  ----------------------------------------------------
 //  aタグのスムーススクロール
 //  ----------------------------------------------------
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth",
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
     });
   });
 });
@@ -47,9 +87,9 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 //  ----------------------------------------------------
 //  ハンバーガーメニュー
 //  ----------------------------------------------------
-document.querySelector(".hamburger").addEventListener("click", function () {
-  this.classList.toggle("active");
-  document.querySelector(".nav-sp").classList.toggle("active");
+document.querySelector('.hamburger').addEventListener('click', function () {
+  this.classList.toggle('active');
+  document.querySelector('.nav-sp').classList.toggle('active');
 });
 
 //  ----------------------------------------------------
@@ -121,8 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setupScrollAnimation() {
   // PC用のリストとSP用のリスト要素を取得
-  const pcList = document.querySelector(".scroll-animate");
-  const spList = document.querySelector(".scroll-animate-sp");
+  const pcList = document.querySelector('.scroll-animate');
+  const spList = document.querySelector('.scroll-animate-sp');
 
   // どちらかの要素が存在しない場合は処理しない
   if (!pcList || !spList) return;
@@ -130,43 +170,95 @@ function setupScrollAnimation() {
   // 画面幅が768px以下（スマートフォン）の場合
   if (window.innerWidth <= 768) {
     // PC用リストは非表示
-    pcList.style.display = "none";
+    pcList.style.display = 'none';
     // SP用リストは表示（横並び用）
-    spList.style.display = "flex";
+    spList.style.display = 'flex';
 
-    // クローンされていない場合（初回のみ処理）
+    // SP用のリストのクローンされていない場合（初回のみ処理）
     if (!spList.dataset.cloned) {
       const items = Array.from(spList.children);
       items.forEach((item) => {
         spList.appendChild(item.cloneNode(true));
       });
-      spList.dataset.cloned = "true";
+      spList.dataset.cloned = 'true';
     }
   } else {
     // SP用リストは非表示
-    spList.style.display = "none";
+    spList.style.display = 'none';
     // PC用リストは表示
-    pcList.style.display = "flex";
+    pcList.style.display = 'flex';
+
+    // PC用のリストのクローンされていない場合
+    if (!pcList.dataset.cloned) {
+      const items = Array.from(pcList.children);
+      items.forEach((item) => {
+        pcList.appendChild(item.cloneNode(true));
+      });
+      pcList.dataset.cloned = 'true';
+    }
   }
 }
 
+
+
 // ページ読み込み時に実行
-window.addEventListener("DOMContentLoaded", setupScrollAnimation);
+window.addEventListener('DOMContentLoaded', setupScrollAnimation);
 // リサイズ時にも実行
-window.addEventListener("resize", setupScrollAnimation);
+window.addEventListener('resize', setupScrollAnimation);
+
+
+// //  ----------------------------------------------------
+// //  FAQのQ.をクリックしたら、A.を表示する
+// //  ----------------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  // すべてのQ要素（質問部分）を取得します
+  const faqQuestions = document.querySelectorAll(".faq_item--q");
+
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", function () {
+      const faqItem = this.closest(".faq_item");
+      const answer = faqItem.querySelector(".faq_item--a");
+
+      // 現在開いているすべての回答を閉じる処理
+      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
+        const otherQuestion = otherAnswer.previousElementSibling;
+        if (otherAnswer !== answer) {
+          otherAnswer.style.maxHeight = null;
+          otherAnswer.classList.remove("open");
+          if (otherQuestion) {
+            otherQuestion.classList.remove("active");
+          }
+        }
+      });
+
+      // クリックされた回答を開閉する処理
+      if (answer.classList.contains("open")) {
+        // すでに開いている場合は閉じる
+        answer.style.maxHeight = null;
+        answer.classList.remove("open");
+        this.classList.remove("active");
+      } else {
+        // 開いていない場合は開く
+        answer.classList.add("open");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        this.classList.add("active");
+      }
+    });
+  });
+});
 
 //  ----------------------------------------------------
 //  EVENT lineアニメーション
 //  ----------------------------------------------------
 window.addEventListener("DOMContentLoaded", () => {
-  const boxes = document.querySelectorAll(".boxPath");
+  const boxes = document.querySelectorAll('.boxPath');
   const step = 4;
 
-  boxes.forEach((box) => {
+  boxes.forEach(box => {
     const totalLength = box.getTotalLength();
 
     box.style.strokeDasharray = totalLength;
-    box.style.strokeDashoffset = 0; // 最初は全部見えてる状態
+    box.style.strokeDashoffset = 0;  // 最初は全部見えてる状態
 
     let offset = 0;
 
@@ -186,20 +278,21 @@ window.addEventListener("DOMContentLoaded", () => {
 //  ----------------------------------------------------
 //  EVENT iconアニメーション
 //  ----------------------------------------------------
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
   setTimeout(function () {
     // 表示したい3つのクラス名を配列にまとめる
-    const classNames = ["seminar__img", "ask-space__img", "beginner__img"];
+    const classNames = ['seminar__img', 'ask-space__img', 'beginner__img'];
 
-    classNames.forEach((className) => {
+    classNames.forEach(className => {
       // それぞれのクラスの要素を全部取得
       const elements = document.querySelectorAll(`.${className}`);
-      elements.forEach((el) => {
-        el.style.opacity = "1"; // 表示に変更
+      elements.forEach(el => {
+        el.style.opacity = '1'; // 表示に変更
       });
     });
   }, 3000);
 });
+
 
 //  ----------------------------------------------------
 //  EVENT オンライン飲み会 avatar表示
@@ -254,26 +347,46 @@ $(function () {
   });
 });
 
+
 // //  ----------------------------------------------------
 // //  FAQのQ.をクリックしたら、A.を表示する
 // //  ----------------------------------------------------
-$(function () {
-  /* クリックイベントを設定 */
-  $(".faq__item--question").on("click", function () {
-    const $clickedQuestion = $(this);
-    const $parentItem = $clickedQuestion.closest(".faq__item");
-    const $answer = $parentItem.find(".faq__item--answer");
+document.addEventListener("DOMContentLoaded", function () {
+  // すべてのQ要素（質問部分）を取得します
+  const faqQuestions = document.querySelectorAll(".faq_item--q");
 
-    // 他の開いているアコーディオンを閉じる
-    $(".faq__item")
-      .not($parentItem)
-      .each(function () {
-        $(this).find(".faq__item--answer").slideUp(500);
-        $(this).find(".faq__item--question").removeClass("open");
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", function () {
+      const faqItem = this.closest(".faq_item");
+      const answer = faqItem.querySelector(".faq_item--a");
+
+      // 現在開いているすべての回答を閉じる処理
+      document.querySelectorAll(".faq_item--a.open").forEach((otherAnswer) => {
+        const otherQuestion = otherAnswer.previousElementSibling;
+        if (otherAnswer !== answer) {
+          otherAnswer.style.maxHeight = null;
+          otherAnswer.classList.remove("open");
+          if (otherQuestion) {
+            otherQuestion.classList.remove("active");
+          }
+        }
       });
 
-    // クリックされたアコーディオンを開閉
-    $answer.slideToggle(500);
-    $clickedQuestion.toggleClass("open");
+      // クリックされた回答を開閉する処理
+      if (answer.classList.contains("open")) {
+        // すでに開いている場合は閉じる
+        answer.style.maxHeight = null;
+        answer.classList.remove("open");
+        this.classList.remove("active");
+      } else {
+        // 開いていない場合は開く
+        answer.classList.add("open");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        this.classList.add("active");
+      }
+    });
   });
 });
+
+
+
