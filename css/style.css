@@ -308,8 +308,8 @@ index.html
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 120vh;
-    margin-top: 85vh;
+    height: 100vh;
+    margin-top: 75vh;
 }
 
 .section-title-rotate {

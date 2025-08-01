@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.create({
     trigger: ".panel-wrapper",
     start: "top top",
-    end: "+=600",
+    end: "+=500",
     scrub: true,
     pin: ".panel",
     onUpdate: self => {
