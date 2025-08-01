@@ -498,22 +498,13 @@ index.html
 event.html
 ===================================== */
 /* ページ内共通 */
+#event {
+    position: relative;
+}
+
 .event__section {
     position: relative;
     margin-bottom: 70px;
-    margin-bottom: 70px;
-}
-
-.event__sub-title {
-    max-width: 60%;
-    font-size: 60px;
-    margin-bottom: 50px;
-}
-
-.event__sub-title span {
-    font-size: 80px;
-    letter-spacing: 0.1em;
-    padding-right: 50px;
 }
 
 .event__items {
@@ -547,7 +538,6 @@ event.html
 }
 
 .event__item-list li {
-    display: block;
     position: relative;
     padding-bottom: 25px;
 }
@@ -586,11 +576,16 @@ event.html
 
 
 /* 01 作業会定例 */
-/* 作業会 セミナー */
-.seminar__img {
-    width: 100%;
+.seminar__img,
+.ask-space__img ,
+.beginner__img {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 0, 0.6))
+    drop-shadow(0 0 12px rgba(0, 255, 0, 0.4));
 }
 
+/* 作業会 セミナー */
+
+.seminar__img, 
 .ask-space__img {
     width: 100%;
 }
@@ -611,34 +606,14 @@ event.html
     position: relative;
 }
 
+.virtual-drink-meetup__imgs img {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 0, 0.6))
+    drop-shadow(0 0 12px rgba(0, 255, 0, 0.4));
+}
+
 .monitor {
     display: block;
     width: 100%;
-}
-
-.avatars {
-    position: absolute;
-    top: 5%;
-    left: 9%;
-    width: 82%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    z-index: 10;
-}
-
-.drink__avatar {
-    width: 34%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: opacity 0.1s ease;
-}
-
-.drink__avatar.visible {
-    opacity: 1;
 }
 
 .beer {
@@ -667,6 +642,11 @@ event.html
     margin-top: 18px;
 }
 
+.hackathon__img img {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 0, 0.6))
+    drop-shadow(0 0 12px rgba(0, 255, 0, 0.4));
+}
+
 .typewriter {
     position: absolute;
     top: 6%;
@@ -684,7 +664,6 @@ event.html
     visibility: visible;
     /* アニメーション開始時に付与 */
 }
-
 
 /* =================================
 faq.html
