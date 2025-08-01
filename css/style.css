@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 /* 共通 -----------------------------------------*/
 body {
     font-family: "Barlow Condensed", sans-serif;
@@ -310,8 +308,8 @@ index.html
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
-    margin-top: 80vh;
+    height: 120vh;
+    margin-top: 95vh;
 }
 
 .section-title-rotate {
@@ -1077,7 +1075,7 @@ faq.html
     .about__top {
         flex-direction: column;
         height: auto;
-        margin-top: 80vh;
+        margin-top: 95vh;
         padding-bottom: 70px;
     }
 
