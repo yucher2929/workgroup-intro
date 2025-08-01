@@ -370,6 +370,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // //  ----------------------------------------------------
+// //  背景波形
+// //  ----------------------------------------------------
+window.addEventListener("DOMContentLoaded", () => {
+  const eventSection = document.querySelector("#event");
+  if (!eventSection) return;
+
+  const svgNS = "http://www.w3.org/2000/svg";
+
+  const cycleHeight = 200;   // 波の1周期の高さ
+  const repeatCount = 2;     // 繰り返し回数（ループ用に2周期分）
+  const totalHeight = cycleHeight * repeatCount;
+
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", `0 0 20 ${totalHeight}`);
+  svg.setAttribute("width", "150");
+  svg.setAttribute("height", `${repeatCount * 100}%`);
+  svg.setAttribute("preserveAspectRatio", "none");
+
+  Object.assign(svg.style, {
+    position: "fixed",
+    top: "0",
+    left: "5%",
+    height: "150%",
+    zIndex: "-1",
+    opacity: "0.2",
+    pointerEvents: "none",
+    transform: "none",
+  });
+
+  // フィルター定義
+  const defs = document.createElementNS(svgNS, "defs");
+  const filter = document.createElementNS(svgNS, "filter");
+  filter.setAttribute("id", "glow");
+  const feDropShadow = document.createElementNS(svgNS, "feDropShadow");
+  feDropShadow.setAttribute("dx", "0");
+  feDropShadow.setAttribute("dy", "0");
+  feDropShadow.setAttribute("stdDeviation", "2");
+  feDropShadow.setAttribute("flood-color", "#A0A0A0");
+  filter.appendChild(feDropShadow);
+  defs.appendChild(filter);
+  svg.appendChild(defs);
+
+  // ポリライン作成
+  const polyline = document.createElementNS(svgNS, "polyline");
+
+  // 2周期分の頂点データ（Yを0~200、200~400に分けて繰り返し）
+  // ここは波の座標を1周期分書いて、2回連結で自然ループに
+  const basePoints = [
+    "5,0", "18,5", "2,10", "16,15", "7,20", "19,25", "3,30", "14,35",
+    "6,40", "17,45", "4,50", "20,55", "1,60", "15,65", "8,70", "18,75",
+    "5,80", "16,85", "2,90", "17,95", "9,100", "13,105", "6,110", "20,115",
+    "3,120", "14,125", "5,130", "19,135", "4,140", "15,145", "8,150", "17,155",
+    "2,160", "20,165", "5,170", "14,175", "7,180", "16,185", "4,190", "18,195", "10,200"
+  ];
+
+  // 2周期分のポイント文字列作成
+  let pointsStr = "";
+  for (let i = 0; i < repeatCount; i++) {
+    basePoints.forEach(point => {
+      const [x, y] = point.split(",").map(Number);
+      pointsStr += `${x},${y + cycleHeight * i} `;
+    });
+  }
+
+  polyline.setAttribute("points", pointsStr.trim());
+  polyline.setAttribute("fill", "none");
+  polyline.setAttribute("stroke", "#909090");
+  polyline.setAttribute("stroke-width", "1.5");
+  polyline.setAttribute("filter", "url(#glow)");
+  svg.style.opacity = "0.15";
+
+  svg.appendChild(polyline);
+  eventSection.appendChild(svg);
+
+  let offset = 0;
+  function animate() {
+    offset += 1;
+    if (offset >= cycleHeight) offset = 0;  // 1周期分でループ
+    svg.style.transform = `translateY(${-offset}px)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+});
+
+
+// //  ----------------------------------------------------
 // //  FAQのQ.をクリックしたら、A.を表示する
 // //  ----------------------------------------------------
 $(function () {
