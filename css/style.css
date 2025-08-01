@@ -309,7 +309,7 @@ index.html
     justify-content: space-between;
     align-items: center;
     height: 120vh;
-    margin-top: 95vh;
+    margin-top: 85vh;
 }
 
 .section-title-rotate {
@@ -1075,7 +1075,7 @@ faq.html
     .about__top {
         flex-direction: column;
         height: auto;
-        margin-top: 95vh;
+        margin-top: 85vh;
         padding-bottom: 70px;
     }
 
